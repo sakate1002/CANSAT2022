@@ -1,6 +1,6 @@
 import random
 answer = random.randint(1,100)
-
+###aaaaa
 number = int(input('数字を当ててみてね！'))
 
 while answer != number:
