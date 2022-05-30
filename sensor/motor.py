@@ -1,6 +1,5 @@
 from gpiozero import Motor
 import time
-
 import stuck
 
 
