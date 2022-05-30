@@ -5,9 +5,9 @@ from other import print_xbee
 
 import xbee
 import motor
-from sensor.gps import gps_navigate
-from sensor.gps import gps
-from sensor.axis import bmc050
+import gps_navigate
+import gps
+import bmc050
 import other
 
 
