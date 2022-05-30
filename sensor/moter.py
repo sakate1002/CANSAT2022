@@ -90,22 +90,6 @@ def deceleration(strength_l, strength_r):
             motor_stop(0.1)
 
 
-def move(strength_l, strength_r, t_moving, ue=False):
-    """
-    一定時間モータを動かすための関数
-    strengthは-100~100
-    t_movingはモータを動かす時間
-    ueは機体が逆さまかどうか判断するのをmotor関数内で行うかどうか(True/False)
-    """
-   """ if ue:
-        stuck.ue_jug()
-    motor_move(strength_l, strength_r, t_moving)
-    if abs(strength_l) == abs(strength_r) and strength_l * strength_r < 0:
-        motor_stop(0.1)
-    else:
-        deceleration(strength_l, strength_r)"""
-
-
 if __name__ == '__main__':
     setup()
     while 1:
