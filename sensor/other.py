@@ -1,7 +1,7 @@
 import os
 import linecache
 
-from sensor.communication import xbee
+from sensor import xbee
 
 
 def print_xbee(word, com=True):
