@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #coding:utf-8
 
-from smbus import SMBus
+from smbus2 import SMBus
 import time
 
 bus_number  = 1
