@@ -7,7 +7,7 @@ import xbee
 import motor
 import gps_navigate
 import gps
-import bmc050
+import bmx055
 import other
 
 
@@ -22,7 +22,7 @@ def ue_jug():
     while 1:
         za = []
         for i in range(3):
-            accdata = bmc050.acc_read()
+            accdata = bmx055.acc_read()
             za.append(accdata[2])
             time.sleep(0.2)
         z = max(za)
