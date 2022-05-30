@@ -3,7 +3,7 @@ import datetime
 import random
 from other import print_xbee
 
-from sensor.communication import xbee
+import xbee
 import motor
 from sensor.gps import gps_navigate
 from sensor.gps import gps
