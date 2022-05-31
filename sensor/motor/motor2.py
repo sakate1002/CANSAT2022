@@ -7,7 +7,7 @@ def setup2():
     motorを使うときに必要な初期化を行う関数
     """
     global motor_c
-    Cpin1, Cpin2 = 
+    Cpin1, Cpin2 = 23, 24
     motor_c = Motor(Cpin1, Cpin2)
 
 def motor_continue2(strength_c):
@@ -73,18 +73,15 @@ if __name__ == '__main__':
     while 1:
         command = input('操作\t')
         if command == 'a':
-            move2(40, 80, 2)
+            move2(40, 2)
         elif command == 'w':
-            move2(80, 80, 2)
-        elif command == 'd':
-            move2(80, 40, 2)
+            move2(80, 2)
         elif command == 's':
-            move2(-50, -50, 2)
+            move2(-50, 2)
         elif command == 'manual':
-            l = float(input('左の出力は？'))
-            r = float(input('右の出力は？'))
+            c = float(input('モーターの出力は？'))
             t = float(input('移動時間は？'))
             time.sleep(0.8)
-            move2(l, r, t)
+            move2(c,t)
         else:
             print('もう一度入力してください')
