@@ -3,11 +3,11 @@ import datetime
 import random
 from other import print_xbee
 
-import xbee
+from communication import xbee
 import motor
-import gps_navigate
-import gps
-import bmx055
+from gps import gps_navigate
+from gps import gps
+from ax import bmx055
 import other
 
 
