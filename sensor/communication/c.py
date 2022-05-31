@@ -1,3 +1,3 @@
-from xbee.py import str_trans
+from xbee import str_trans
 
-dtr_trans('Hello World')
+str_trans('Hello World')
