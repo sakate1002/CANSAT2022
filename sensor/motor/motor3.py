@@ -11,9 +11,6 @@ pi1 = pigpio.pi()
 pi1.set_mode(AIN1, pigpio.OUTPUT)
 pi1.set_mode(AIN2, pigpio.OUTPUT)
 pi1.set_mode(PWMA,pigpio.OUTPUT)
-pi1.set_mode(BIN1, pigpio.OUTPUT)
-pi1.set_mode(BIN2, pigpio.OUTPUT)
-pi1.set_mode(PWMB,pigpio.OUTPUT)
 
 motor_prior_l = 0	#Left Motor Speed Prior
 motor_prior_r = 0	#Right Motor Speed Prior
@@ -41,12 +38,9 @@ def motor(left, right, t = 0.001, mode = 0):
 
 				pi1.write(AIN1, 1)
 				pi1.write(AIN2, 0)
-				pi1.write(BIN1, 1)
-				pi1.write(BIN2, 0)
 
 				#print(motorPL, motorPR)
 				pi1.hardware_PWM(PWMA, 500, abs(motorPL))
-				pi1.hardware_PWM(PWMB, 500, abs(motorPR))
 			mode = 0
 
 		#print(motor_prior_l, motor_prior_r)
@@ -84,19 +78,8 @@ def motor(left, right, t = 0.001, mode = 0):
 			pi1.write(AIN1, 0)
 			pi1.write(AIN2, 0)
 
-		if motorPR > 0:
-			pi1.write(BIN1, 1)
-			pi1.write(BIN2, 0)
-		elif motorPR < 0:
-			pi1.write(BIN1, 0)
-			pi1.write(BIN2, 1)
-		else:
-			pi1.write(BIN1, 0)
-			pi1.write(BIN2, 0)
-
 		#print(motorPL, motorPR)
 		pi1.hardware_PWM(PWMA, 500, abs(motorPL))
-		pi1.hardware_PWM(PWMB, 500, abs(motorPR))
 
 		if(mode == 1):
 			time.sleep(t)
