@@ -32,7 +32,7 @@ def motor(c, t = 0.001, mode = 0):
 				pi1.write(AIN1, 1)
 				pi1.write(AIN2, 0)
 
-				#print(motorPL, motorPR)
+				#print(motorPC)
 				pi1.hardware_PWM(PWMA, 500, abs(motorPC))
 			mode = 0
 
@@ -50,7 +50,7 @@ def motor(c, t = 0.001, mode = 0):
 		motorPC = int(motorPC * 10000)
 
 		if(mode == 1):
-			motorPL = int(center * 10000)
+			motorPC = int(center * 10000)
 
 		if motorPC > 0:
 			pi1.write(AIN1, 1)
