@@ -1,2 +1,3 @@
 from xbee import str_trans
-str_trans('Hello World')
+from gps import read_gps
+str_trans(read_gps())
