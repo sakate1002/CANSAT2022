@@ -1,3 +1,5 @@
 from xbee import str_trans
-import bme280
-str_trans(bme280)
+from bme280 import bme280_read , bme280_setup
+bme280_setup()
+a = bme280_read()
+str_trans(a)
