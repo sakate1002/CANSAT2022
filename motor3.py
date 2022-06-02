@@ -14,7 +14,7 @@ pi1.set_mode(PWMA,pigpio.OUTPUT)
 
 motor_prior_c = 0	#Motor Speed Prior
 
-def motor(c, t = 0.001, mode = 0):
+def motor(center, t = 0.001, mode = 0):
 	global motor_prior_c
 	motorPC = 0.0
 
@@ -105,13 +105,13 @@ if __name__ == "__main__":
 						f = 2
 			except KeyboardInterrupt:
 				print("Emergency!")
-				motor(0, 0, 3)
+				motor(0, 3)
 				motor_stop()
 				sys.exit()
 			except:
 				pass
 	except KeyboardInterrupt:
-		motor(0, 0, 3)
+		motor(0, 3)
 		motor_stop()
 	except:
 		print(traceback.format_exc())
