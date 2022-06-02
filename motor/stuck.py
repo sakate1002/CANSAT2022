@@ -1,11 +1,13 @@
 import time
 import datetime
 import random
-from sensor.communication.xbee import print_xbee
+from other import print_xbee
 
+from sensor.communication import xbee
 import motor
 from sensor.gps import gps_navigate
 from sensor.gps import gps
+import other
 from sensor.ax import bmx055
 
 
