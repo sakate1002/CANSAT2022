@@ -103,96 +103,104 @@ def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/Desktop
     統合する場合はprintをXbee.str_transに変更，other.saveLogのコメントアウトを外す
     """
     direction = calibration.calculate_direction(lon2, lat2)
-    goal_distance = direction['distance']
-    while goal_distance >= thd_distance:
+    goal_distance_old = direction['distance']
+    mission_distance = int(goal_distance_old) * 0.7
+    
+    while goal_distance_old >= thd_distance:
+
         t_stuck_count = 1
         stuck.ue_jug()
-
-        # ------------- calibration -------------#
-        # xbee.str_trans('calibration Start')
-        other.print_xbee('##--calibration Start--##\n')
-        magx_off, magy_off = calibration.cal(40, -40, 30)
-        print(f'magx_off: {magx_off}\tmagy_off: {magy_off}\n')
-
-        theta = angle_goal(magx_off, magy_off, lon2, lat2)
-        adjust_direction(theta, magx_off, magy_off, lon2, lat2)
-
-        t_cal = time.time()
-        lat_old, lon_old = gps.location()
-        while time.time() - t_cal <= t_adj_gps:
-            lat1, lon1 = gps.location()
-            lat_new, lon_new = lat1, lon1
-            direction = gps_navigate.vincenty_inverse(lat1, lon1, lat2, lon2)
-            azimuth, goal_distance = direction["azimuth1"], direction["distance"]
-            other.print_xbee(
-                f'lat: {lat1}\tlon: {lon1}\tdistance: {goal_distance}\tazimuth: {azimuth}\n')
-
-            if t_stuck_count % 8 == 0:
-                ##↑何秒おきにスタックジャッジするかを決める##
-                if stuck.stuck_jug(lat_old, lon_old, lat_new, lon_new, 4):
-                    pass
-                else:
-                    #収納モードにする
-                    stuck.stuck_avoid()
-                    pass
-                lat_old, lon_old = gps.location()
-
-            if goal_distance <= thd_distance:
-                break
+        goal_distance = direction['distance']
+        mission_count = 0
+        while mission_count < 1:
+            if (mission_distance - 5) < goal_distance < (mission_distance + 5):
+            #ミッション用の関数呼び出す!!
+                mission_count += 1
+        
             else:
-                for _ in range(25):
-                    magdata = bmx055.mag_read()
-                    mag_x = magdata[0]
-                    mag_y = magdata[1]
+             # ------------- calibration -------------#
+             # xbee.str_trans('calibration Start')
+                other.print_xbee('##--calibration Start--##\n')
+                magx_off, magy_off = calibration.cal(40, -40, 30)
+                print(f'magx_off: {magx_off}\tmagy_off: {magy_off}\n')
+                theta = angle_goal(magx_off, magy_off, lon2, lat2)
+                adjust_direction(theta, magx_off, magy_off, lon2, lat2)
 
-                    theta = calibration.angle(mag_x, mag_y, magx_off, magy_off)
-                    angle_relative = azimuth - theta
-                    if angle_relative >= 0:
-                        angle_relative = angle_relative if angle_relative <= 180 else angle_relative - 360
-                    else:
-                        angle_relative = angle_relative if angle_relative >= -180 else angle_relative + 360
-                    theta = angle_relative
-                    adj_r = 0
-                    # if theta >= 0:
-                    #     if theta <= 8:
-                    #         adj = 0
-                    #     elif theta <= 15:
-                    #         adj = 5
-                    #     elif theta <= 90:
-                    #         adj = 20
-                    #         adj_r = 5
-                    #     else:
-                    #         adj = 30
-                    #         adj_r = 5
-                    # else:
-                    #     if theta >= - 8:
-                    #         adj = 0
-                    #     elif theta >= -15:
-                    #         adj = -10
-                    #     elif theta >= -90:
-                    #         adj = -20
-                    #     else:
-                    #         adj = -30
-                    if theta >= 0:
-                        if theta <= 15:
-                            adj = 0
-                        elif theta <= 90:
-                            adj = 20
-                            adj_r = 5
+                t_cal = time.time()
+                lat_old, lon_old = gps.location()
+                while time.time() - t_cal <= t_adj_gps:
+                    lat1, lon1 = gps.location()
+                    lat_new, lon_new = lat1, lon1
+                    direction = gps_navigate.vincenty_inverse(lat1, lon1, lat2, lon2)
+                    azimuth, goal_distance = direction["azimuth1"], direction["distance"]
+                    other.print_xbee(
+                        f'lat: {lat1}\tlon: {lon1}\tdistance: {goal_distance}\tazimuth: {azimuth}\n')
+
+                    if t_stuck_count % 8 == 0:
+                    ##↑何秒おきにスタックジャッジするかを決める##
+                        if stuck.stuck_jug(lat_old, lon_old, lat_new, lon_new, 4):
+                            pass
                         else:
-                            adj = 30
-                            adj_r = 5
+                            stuck.stuck_avoid()
+                            pass
+                        lat_old, lon_old = gps.location()
+
+                    if goal_distance <= thd_distance:
+                        break
                     else:
-                        if theta >= -15:
-                            adj = 0
-                        elif theta >= -90:
-                            adj = -20
-                        else:
-                            adj = -30
-                    print(f'angle ----- {theta}')
-                    strength_l, strength_r = 70 + adj, 70 - adj - adj_r
-                    motor.motor_continue(strength_l, strength_r)
-                    time.sleep(0.04)
+                        for _ in range(25):
+                            magdata = bmx055.mag_dataRead()
+                            mag_x = magdata[0]
+                            mag_y = magdata[1]
+
+                            theta = calibration.angle(mag_x, mag_y, magx_off, magy_off)
+                            angle_relative = azimuth - theta
+                            if angle_relative >= 0:
+                                angle_relative = angle_relative if angle_relative <= 180 else angle_relative - 360
+                            else:
+                                angle_relative = angle_relative if angle_relative >= -180 else angle_relative + 360
+                            theta = angle_relative
+                            adj_r = 0
+                            # if theta >= 0:
+                            #     if theta <= 8:
+                            #         adj = 0
+                            #     elif theta <= 15:
+                            #         adj = 5
+                            #     elif theta <= 90:
+                            #         adj = 20
+                            #         adj_r = 5
+                            #     else:
+                            #         adj = 30
+                            #         adj_r = 5
+                            # else:
+                            #     if theta >= - 8:
+                            #         adj = 0
+                            #     elif theta >= -15:
+                            #         adj = -10
+                            #     elif theta >= -90:
+                            #         adj = -20
+                            #     else:
+                            #         adj = -30
+                            if theta >= 0:
+                                if theta <= 15:
+                                    adj = 0
+                                elif theta <= 90:
+                                    adj = 20
+                                    adj_r = 5
+                                else:
+                                    adj = 30
+                                    adj_r = 5
+                            else:
+                                if theta >= -15:
+                                    adj = 0
+                                elif theta >= -90:
+                                    adj = -20
+                                else:
+                                    adj = -30
+                            print(f'angle ----- {theta}')
+                            strength_l, strength_r = 70 + adj, 70 - adj - adj_r
+                            motor.motor_continue(strength_l, strength_r)
+                            time.sleep(0.04)
             t_stuck_count += 1
             other.log(logpath, datetime.datetime.now(), time.time() -
                       t_start, lat1, lon1, direction['distance'], angle_relative)
