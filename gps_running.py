@@ -4,7 +4,7 @@ import time
 import gps_navigate
 import gps
 import bmx055
-import motor
+import motor #motor.move(l,r,t)
 import motor3
 import xbee
 import calibration
@@ -22,9 +22,9 @@ def angle_goal(magx_off, magy_off, lon2, lat2):
     mag_x = magdata[0]
     mag_y = magdata[1]
     theta = calibration.angle(mag_x, mag_y, magx_off, magy_off)
-    direction = calibration.calculate_direction(lon2, lat2)
-    azimuth = direction["azimuth1"]
-    angle_relative = azimuth - theta
+    direction = calibration.calculate_direction(lon2, lat2) #逆開放によるゴールまでの距離の計算
+    azimuth = direction["azimuth1"] #ゴールまでの方位角
+    angle_relative = azimuth - theta #相対角度 = 方位角 - ローバの向きと北の偏角
     if angle_relative >= 0:
         angle_relative = angle_relative if angle_relative <= 180 else angle_relative - 360
     else:
@@ -53,11 +53,11 @@ def adjust_direction(theta, magx_off, magy_off, lon2, lat2):
     # print('Calculated angle_relative: {theta}')
     # time.sleep(0.03)
 
-    stuck_count = 1
-    t_small = 0.1
-    t_big = 0.2
-    force = 35
-    while 30 < theta <= 180 or -180 < theta < -30:
+    stuck_count = 1 #調整阪手
+    t_small = 0.1 #調整阪手
+    t_big = 0.2 #調整阪手
+    force = 35 #調整阪手
+    while 30 < theta <= 180 or -180 < theta < -30: #ゴールとの相対角度が-30°~30°未満になるまでループ
         if stuck_count >= 16:
             ##方向調整が不可能な場合はスタックしたとみなして、もう一度キャリブレーションからスタート##
             other.print_xbee(
@@ -68,7 +68,7 @@ def adjust_direction(theta, magx_off, magy_off, lon2, lat2):
         if stuck_count % 7 == 0:
             other.print_xbee('Increase output')
             force += 10
-        if 30 <= theta <= 60:
+        if 30 <= theta <= 60: #さらに細かく方向調整するのもありかも？阪手
             other.print_xbee(
                 f'theta = {theta}\t---rotation_ver1 (stuck:{stuck_count})')
             motor.move(force, -force, t_small)
@@ -91,7 +91,7 @@ def adjust_direction(theta, magx_off, magy_off, lon2, lat2):
 
         stuck_count += 1
         stuck.ue_jug()
-        theta = angle_goal(magx_off, magy_off, lon2, lat2)
+        theta = angle_goal(magx_off, magy_off, lon2, lat2) #ゴールとの相対角度 = theta　阪手
         print('Calculated angle_relative: {theta}')
         time.sleep(1)
     other.print_xbee(f'theta = {theta} \t rotation finished!!!')
@@ -106,18 +106,19 @@ def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/Desktop
     goal_distance_old = direction['distance']
     mission_distance = int(goal_distance_old) * 0.7
     
-    while goal_distance_old >= thd_distance:
+    while goal_distance >= thd_distance:
 
         t_stuck_count = 1
         stuck.ue_jug()
         goal_distance = direction['distance']
         mission_count = 0
         while mission_count < 1:
-            if (mission_distance - 5) < goal_distance < (mission_distance + 5):
-            #ミッション用の関数呼び出す!!
+            if (mission_distance - 10) < goal_distance < (mission_distance + 10):
+            #ミッション用の関数呼び出す!!阪手
                 mission_count += 1
         
             else:
+                pass
              # ------------- calibration -------------#
              # xbee.str_trans('calibration Start')
                 other.print_xbee('##--calibration Start--##\n')
@@ -186,7 +187,7 @@ def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/Desktop
                                     adj = 0
                                 elif theta <= 90:
                                     adj = 20
-                                    adj_r = 5
+                                    adj_r = 5 #右のモーターだけ？阪手
                                 else:
                                     adj = 30
                                     adj_r = 5
