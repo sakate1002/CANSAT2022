@@ -15,7 +15,7 @@ import motor
 import stuck
 
 
-path_log = '/home/pi/Desktop/cansat2021/log/calibration.txt'
+path_log = '/home/cansat2022/Desktop/CANSAT2022/log/calibration.txt'
 
 
 # filecount = len(glob.glob1(path_log, '*' + '.txt'))

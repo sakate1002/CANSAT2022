@@ -74,7 +74,7 @@ def off():
 if __name__ == '__main__':
     on()
 
-    img1 ='/home/pi/Desktop/Cansat2021ver/dst_panorama/0.jpg'
+    img1 ='/home/cansat2022/Desktop/CANSAT2022/dst_panorama/0.jpg'
     other.print_xbee("!!!!!!!panorama composition finish!!!!! After 1min send!!!")
     time.sleep(15)
     

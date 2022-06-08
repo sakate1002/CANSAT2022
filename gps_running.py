@@ -97,7 +97,7 @@ def adjust_direction(theta, magx_off, magy_off, lon2, lat2):
     other.print_xbee(f'theta = {theta} \t rotation finished!!!')
 
 
-def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/pi/Desktop/cansat2021ver/log/gpsrunningLog', t_start=0):
+def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/Desktop/CANSAT2022/log/gpsrunningLog', t_start=0):
     """
     GPS走行の関数
     統合する場合はprintをXbee.str_transに変更，other.saveLogのコメントアウトを外す
@@ -132,6 +132,7 @@ def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/pi/Desktop/cansat2
                 if stuck.stuck_jug(lat_old, lon_old, lat_new, lon_new, 4):
                     pass
                 else:
+                    #収納モードにする
                     stuck.stuck_avoid()
                     pass
                 lat_old, lon_old = gps.location()
@@ -213,7 +214,7 @@ if __name__ == '__main__':
     lat2 = 35.412957
     lon2 = 138.592717
     gps.open_gps()
-    bmx055.bmc050_setup()
+    bmx055.bmx055_setup()
     motor.setup()
 
-    drive(lon2, lat2, thd_distance=10, t_adj_gps=60)
+    drive(lon2, lat2, thd_distance=5, t_adj_gps=60)
