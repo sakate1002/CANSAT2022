@@ -1,7 +1,7 @@
 import time
 
 import bme280
-import print_xbee
+from other import print_xbee
 
 def pressdetect_land(thd_press_land):
     """
