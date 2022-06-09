@@ -1,14 +1,14 @@
 import time
 import datetime
 import random
-from other import print_xbee
+import print_xbee
 
 import xbee
 import motor
 import gps_navigate
 import gps
-import other
 import bmx055
+import other
 
 
 def ue_jug():
