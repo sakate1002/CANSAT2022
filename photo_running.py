@@ -66,8 +66,8 @@ def goal_detection(imgpath: str, G_thd: float):
         path_detection = other.filename(
             '/home/cansat2022/Desktop/CANSAT2022/detected/Detected-', 'jpg')
 
-        red_min = np.array([120, 120, 120], np.uint8)
-        red_max = np.array([255, 255, 255], np.uint8)
+        red_min = np.array([0, 64, 0], np.uint8) #赤色検知最小値
+        red_max = np.array([15, 255, 255], np.uint8) #赤色検知最大値
         mask = cv2.inRange(img_hsv, red_min, red_max)
         contours, hierarchy = cv2.findContours(
             mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -89,13 +89,13 @@ def goal_detection(imgpath: str, G_thd: float):
                 area = cv2.contourArea(contours[i])
                 if max_area < area:
                     max_area = area
-                    max_area_contour = i
+                    max_area_contour = i #新しく検知した時の赤色面積が元々より大きければカウント
             cv2.imwrite(path_detection, radius_frame)
         else:
             cv2.imwrite(path_detection, img)
 
-        max_area /= hig * wid
-        max_area *= 100
+        max_area /= hig * wid 
+        max_area *= 100  #(赤色面積/画面全体) * 100 %
 
         centers = get_center(contours[max_area_contour])
 
@@ -104,9 +104,9 @@ def goal_detection(imgpath: str, G_thd: float):
         elif max_area <= 0.1:
             return (-1, max_area, 1000000, imgpath, path_detection)
         elif max_area >= G_thd:
-            GAP = (centers[0] - wid / 2) / (wid / 2) * 100
+            GAP = (centers[0] - wid / 2) / (wid / 2) * 100 #（重心-(画面の幅/2))/(画面の幅/2)) * 100
             return (1, max_area, GAP, imgpath, path_detection)
-        else:
+        else: # -1 < max_area <= G_thd
             GAP = (centers[0] - wid / 2) / (wid / 2) * 100
             return (0, max_area, GAP, imgpath, path_detection)
     except:
@@ -219,15 +219,15 @@ def image_guided_driving(log_photorunning, G_thd, magx_off, magy_off, lon2, lat2
                     print_xbee('Turn left')
                     count_short_l += 1
                     adj_short = 0
-                    if count_short_l % 4 == 0:
-                        adj_short += 3
+                    if count_short_l % 4 == 0: #4の倍数ごとに出力を上げていくっ！
+                        adj_short += 3 #モーターの出力+3
                         print_xbee('#-Power up-#')
                     motor.move(-20 - adj_short, 20 + adj_short, 0.1)
                 elif 65 <= gap and gap <= 100:
                     print_xbee('Turn right')
                     count_short_r += 1
-                    if count_short_r % 4 == 0:
-                        adj_short += 3
+                    if count_short_r % 4 == 0: #4の倍数ごとに出力を上げていくっ！
+                        adj_short += 3 #モーターの出力+3
                         print_xbee('#-Power up-#')
                     motor.move(20 + adj_short, -20 - adj_short, 0.1)
                 else:
