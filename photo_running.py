@@ -64,7 +64,7 @@ def goal_detection(imgpath: str, G_thd: float):
 
         # 最小外接円を描いた写真の保存先
         path_detection = other.filename(
-            '/home/pi/Desktop/Cansat2021ver/detected/Detected-', 'jpg')
+            '/home/cansat2022/Desktop/CANSAT2022/detected/Detected-', 'jpg')
 
         red_min = np.array([120, 120, 120], np.uint8)
         red_max = np.array([255, 255, 255], np.uint8)
@@ -116,7 +116,7 @@ def goal_detection(imgpath: str, G_thd: float):
 def adjustment_mag(strength, t, magx_off, magy_off):
     print("1")
 
-    magdata = mag.mag_read()
+    magdata = bmx055.mag_dataRead()
     mag_x_old = magdata[0]
     mag_y_old = magdata[1]
     theta_old = calibration.angle(mag_x_old, mag_y_old, magx_off, magy_off)
@@ -124,7 +124,7 @@ def adjustment_mag(strength, t, magx_off, magy_off):
     while time.time() - t_start <= t:
         print("4")
         strength_adj = strength
-        magdata = mag.mag_read()
+        magdata = bmx055.mag_dataRead()
         mag_x = magdata[0]
         mag_y = magdata[1]
 
@@ -150,7 +150,7 @@ def adjustment_mag(strength, t, magx_off, magy_off):
                 adj = strength_adj * -0.4
         print_xbee(f'angle ----- {angle_relative}')
         print("3#)")
-        strength_l, strength_r = strength_adj + adj, strength_adj - adj + 5
+        strength_l, strength_r = strength_adj + adj, strength_adj + adj
         print_xbee(f'motor power:\t{strength_l}\t{strength_r}')
         motor.motor_continue(strength_l, strength_r)
         time.sleep(0.1)
@@ -159,7 +159,7 @@ def adjustment_mag(strength, t, magx_off, magy_off):
         theta_old = calibration.angle(mag_x_old, mag_y_old, magx_off, magy_off)
     print("123")
     strength_l, strength_r = 20, 20
-    motor.deceleration(strength_l/7, strength_r)
+    motor.deceleration(strength_l, strength_r)
 
 
 def image_guided_driving(log_photorunning, G_thd, magx_off, magy_off, lon2, lat2, thd_distance, t_adj_gps, gpsrun=False):
@@ -171,7 +171,7 @@ def image_guided_driving(log_photorunning, G_thd, magx_off, magy_off, lon2, lat2
         auto_count = 0
         while 1:
             stuck.ue_jug()
-            path_photo = '/home/pi/Desktop/cansat2021/photo_imageguide/ImageGuide-'
+            path_photo = '/home/cansat2022/Desktop/CANSAT2022/photo_imageguide/ImageGuide-'
             photoName = take.picture(path_photo)
             goalflug, goalarea, gap, imgname, imgname2 = goal_detection(
                 photoName, 50)
@@ -219,7 +219,7 @@ def image_guided_driving(log_photorunning, G_thd, magx_off, magy_off, lon2, lat2
                     print_xbee('Turn left')
                     count_short_l += 1
                     adj_short = 0
-                    if count_short_r % 4 == 0:
+                    if count_short_l % 4 == 0:
                         adj_short += 3
                         print_xbee('#-Power up-#')
                     motor.move(-20 - adj_short, 20 + adj_short, 0.1)
@@ -247,7 +247,7 @@ def image_guided_driving(log_photorunning, G_thd, magx_off, magy_off, lon2, lat2
                 goal_distance = direction['distance']
                 if goal_distance >= thd_distance + 2:
                     gps_running.drive(lon2, lat2, thd_distance, t_adj_gps,
-                                     logpath='/home/pi/Desktop/Cansat2021ver/log/gpsrunning(image)Log', t_start=0)
+                                     logpath='/home/cansat2022/Desktop/CANSAT2022/log/gpsrunning(image)Log', t_start=0)
     except KeyboardInterrupt:
         print_xbee('stop')
     except Exception as e:
@@ -257,12 +257,11 @@ def image_guided_driving(log_photorunning, G_thd, magx_off, magy_off, lon2, lat2
 
 if __name__ == "__main__":
     try:
-        bmc050.bmc050_error()
         # Initialize
         lat2 = 35.9236093
         lon2 = 139.9118821
         G_thd = 60
-        log_photorunning = '/home/pi/Desktop/Cansat2021ver/log/photorunning_practice.txt'
+        log_photorunning = '/home/cansat2022/Desktop/CANSAT2022/log/photorunning_practice.txt'
         motor.setup()
 
         # calibration
