@@ -1,7 +1,7 @@
 import time
 import datetime
 import random
-import print_xbee
+from other import print_xbee
 
 import xbee
 import motor
