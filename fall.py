@@ -37,6 +37,7 @@ dateTime = datetime.datetime.now()
 # variable for timeout
 t_out_release = 120
 t_out_land = 30
+t_out_release_safe = 1000
 
 # variable for release
 thd_press_release = 0.3
@@ -149,6 +150,14 @@ if __name__ == '__main__':
                     print_xbee('Not Release\n \n')
                 i += 1
             else:
+                # 落下試験用の安全対策（落下しないときにXbeeでプログラム終了)
+                while time.time() - t_release_start <= t_out_release_safe:
+                    xbee.str_trans('continue? y/n \t')
+                    if xbee.str_receive() == 'y':
+                        break
+                    elif xbee.str_receive() == 'n':
+                        xbee.str_trans('Interrupted for safety')
+                        exit()
                 print_xbee('##--release timeout--##')
             print_xbee("######-----Released-----##### \n \n")
         except Exception as e:
