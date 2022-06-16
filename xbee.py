@@ -16,8 +16,7 @@ def image_to_byte(img1):
         ImgTobyte = output.getvalue()
         return ImgTobyte
 
-
-def img_trans(string):
+def img_trans(string): #ボーレートの違いについて57600
     port = serial.Serial(
         port="/dev/ttyAMA0",
         baudrate=57600,
@@ -30,7 +29,7 @@ def img_trans(string):
     port.close()
 
 
-def str_trans(string):
+def str_trans(string): #ボーレートの違いについて9600
     string = str(string)
     ser = serial. Serial(
         port="/dev/ttyAMA0",
@@ -49,7 +48,7 @@ def str_trans(string):
     ser.close()
 
 
-def str_receive():
+def str_receive(): #ボーレートの違いについて57600
     ser = serial.Serial(
         port="/dev/ttyAMA0",
         baudrate=57600,
@@ -81,8 +80,6 @@ if __name__ == '__main__':
     # other.print_xbee("abc")
     img_string = image_to_byte(img1)
     img_trans(img_string)
-
-    
     
     # a = input('何送る？')
     # img1 = "/home/pi/Desktop/cansat2021ver/dst_panorama/"+ a +".jpg"
