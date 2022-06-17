@@ -76,13 +76,8 @@ log_melting = other.filename(
     '/home/cansat2022/Desktop/CANSAT2022/log/meltingLog', 'txt')
 log_paraavoidance = other.filename(
     '/home/cansat2022/Desktop/CANSAT2022/log/paraAvoidanceLog', 'txt')
-log_panoramashooting = other.filename(
-    '/home/cansat2022/Desktop/CANSAT2022/log/panoramaLog', 'txt')
-log_gpsrunning = other.filename(
-    '/home/cansat2022/Desktop/CANSAT2022/log/gpsrunningLog', 'txt')
-log_photorunning = other.filename(
-    '/home/cansat2022/Desktop/CANSAT2022/log/photorunning', 'txt')
-
+log_magrunning = other.filename(
+    '/home/cansat2022/Desktop/CANSAT2022/log/MagrunningLog', 'txt')
 path_paradete = '/home/cansat2022/Desktop/CANSAT2022/photo_paradete/paradete'
 
 def setup():
@@ -280,3 +275,5 @@ if __name__ == '__main__':
     #     print_xbee('#####-----Error(paraavo)-----#####')
     #     print_xbee('#####-----Error(paraavo)-----#####\n \n')
     #######-----------------------------------------------------------########
+
+    
