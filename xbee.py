@@ -63,11 +63,11 @@ def str_receive(): #ボーレートの違いについて57600
 
 
 def on():
-    pi.write(32, 1)
+    pi.write(26, 1)
 
 
 def off():
-    pi.write(32, 0)
+    pi.write(26, 0)
 
 
 if __name__ == '__main__':
