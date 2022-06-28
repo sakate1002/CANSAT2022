@@ -5,7 +5,7 @@ pi = pigpio.pi()
 
 meltPin = 4
 
-def down(t_melt = 3.5):
+def down(t_melt = 2.0):
 	"""
 	溶断回路を用いてテグスを溶断するための関数
 	"""
