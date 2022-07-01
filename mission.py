@@ -145,43 +145,9 @@ def picture(path, width=320, height=240):
 
 
 if __name__ == "__main__":
-	try:
-		#motor(50, 0, 3)
-		#motor(0, 50, 3)
-		#motor(-50, 0, 3)
-		#motor(0, -50, 3)
-		#motor(0, 0, 2, 0)
-		#motor_stop()
-		f = 0
-		while 1:
-			try:
-				if f == 0:
-					C = float(input("input center motor "))
-					f = 1
-					if C > 100 or C < -100:
-						f = 1
-				if f == 1:
-					T = float(input("input time "))
-					f = 2
-				if f == 2:
-					M = float(input("input mode "))
-					if M == 0 or M == 1:
-						motor(C, T, M)
-						motor(0, 2)
-						motor_stop()
-						f = 0
-					else:
-						f = 2
-			except KeyboardInterrupt:
-				print("Emergency!")
-				motor(0, 3)
-				motor_stop()
-				sys.exit()
-			except:
-				pass
-	except KeyboardInterrupt:
-		motor(0, 3)
-		motor_stop()
-	except:
-		print(traceback.format_exc())
-		motor_stop()
+    photoName = picture('photo/photo', 320, 240)
+    motor(30, 5)
+    motor_stop()
+    photoName = picture('photo/photo', 320, 240)
+    motor(-30, 5)
+    motor_stop()
