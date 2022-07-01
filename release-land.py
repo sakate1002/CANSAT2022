@@ -1,7 +1,7 @@
 import sys
-sys.path.append('/home/pi/Desktop/Cansat2021ver/SensorModule/Environmental')
+sys.path.append('/home/cansat2022/Desktop/CANSAT2022/bme280')
 
-import BME280
+import bme280
 import time
 
 
@@ -9,14 +9,14 @@ def pressdetect_release(thd_press_release):
     global presscount_release
     global pressjudge_release
     try:
-        pressdata = BME280.bme280_read()
+        pressdata = bme280.bme280_read()
         prevpress = pressdata[1]
         time.sleep(5)
-        pressdata = BME280.bme280_read()
+        pressdata = bme280.bme280_read()
         latestpress = pressdata[1]
         deltP = latestpress - prevpress
         if 0.0 in pressdata:
-            print("BME280rror!")
+            print("bme280rror!")
             pressjudge_release = 2
             presscount_release = 0
         elif deltP > thd_press_release:
@@ -40,14 +40,14 @@ def pressdetect_land(anypress):
     global presscount_land
     global pressjudge_land
     try:
-        pressdata = BME280.bme280_read()
+        pressdata = bme280.bme280_read()
         Prevpress = pressdata[1]
         time.sleep(1)
-        pressdata = BME280.bme280_read()
+        pressdata = bme280.bme280_read()
         Latestpress = pressdata[1]
         deltP = abs(Latestpress - Prevpress)
         if 0.0 in pressdata:
-            print("BME280error!")
+            print("bme280error!")
             presscount_land = 0
             pressjudge_land = 2
         elif deltP < anypress:
@@ -65,8 +65,8 @@ def pressdetect_land(anypress):
 
 
 if __name__ == '__main__':
-    BME280.bme280_setup()
-    BME280.bme280_calib_param()
+    bme280.bme280_setup()
+    bme280.bme280_calib_param()
     startTime = time.time()
     #放出判定用
     presscount_release = 0
