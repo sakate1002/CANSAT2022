@@ -1,6 +1,7 @@
 import datetime
 import time
 
+import mission
 import gps_navigate
 import gps
 import bmx055
@@ -114,7 +115,7 @@ def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/Desktop
         mission_count = 0
         while mission_count < 1:
             if (mission_distance - 10) < mission_distance < (mission_distance + 10):
-            #ミッション用の関数呼び出す!!阪手
+                mission()
                 mission_count += 1
         
             else:
