@@ -69,36 +69,36 @@ def random(a, b, k):
 def stuck_avoid_move(x):
     if x == 0:
         print_xbee('sutck_avoid_move():0')
-        motor.move(-100, 100, 5)
-        motor.move(60, 60, 3)
+        motor.move(80, 80, 5)
+        motor.move(60, -60, 3)
     elif x == 1:
         print_xbee('sutck_avoid_move():1')
-        motor.move(40, -40, 1)
-        motor.move(80, 80, 5)
+        motor.move(-50, -50, 1)
+        motor.move(-80, 80, 5)
     elif x == 2:
         print_xbee('sutck_avoid_move():2')
-        motor.move(-100, 100, 2)
-        motor.move(100, 100, 5)
+        motor.move(100, 100, 1)
+        motor.move(80, -80, 5)
 
     elif x == 3:
         print_xbee('sutck_avoid_move():3')
-        motor.move(100, -100, 2)
-        motor.move(100, 100, 5)
+        motor.move(100, 100, 2)
+        motor.move(100, -100, 3)
 
     elif x == 4:
         print_xbee('sutck_avoid_move():4')
-        motor.move(40, -40, 1)
-        motor.move(80, 80, 5)
+        motor.move(-40, -40, 3)
+        motor.move(80, -80, 5)
 
     elif x == 5:
         print_xbee('sutck_avoid_move():5')
-        motor.move(-40, 40, 1)
-        motor.move(100, 100, 5)
+        motor.move(40, 40, 3)
+        motor.move(100, -100, 5)
 
     elif x == 6:
         print_xbee('sutck_avoid_move():6')
+        motor.move(100, 100, 2)
         motor.move(100, -100, 3)
-        motor.move(100, 100, 3)
 
 
 
