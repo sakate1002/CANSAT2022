@@ -101,6 +101,7 @@ def stuck_avoid_move(x):
         motor.move(100, 100, 3)
 
 
+
 def stuck_avoid():
     print_xbee('start stuck  avoid')
     flag = False
