@@ -114,7 +114,7 @@ def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/Desktop
         goal_distance = direction['distance']
         mission_count = 0
         while mission_count < 1:
-            if (mission_distance - 10) < mission_distance < (mission_distance + 10):
+            if (mission_distance - 10) < mission_distance and mission_distance < (mission_distance + 10):
                 mission()
                 mission_count += 1
         
@@ -317,4 +317,4 @@ if __name__ == '__main__':
     bmx055.bmx055_setup()
     motor.setup()
 
-    drive(lon2, lat2, thd_distance=5, t_adj_gps=60)
+    drive(lon2, lat2, thd_distance=5, t_adj_gps=60) 

@@ -12,6 +12,7 @@ sys.path.append('/home/cansat2022/Desktop/CANSAT2022/other')
 sys.path.append('/home/cansat2022/Desktop/CANSAT2022/test')
 sys.path.append('/home/cansat2022/Desktop/CANSAT2022/calibration')
 
+import mission
 import time
 import take
 import datetime
@@ -145,14 +146,6 @@ if __name__ == '__main__':
                     print_xbee('Not Release\n \n')
                 i += 1
             else:
-                # 落下試験用の安全対策（落下しないときにXbeeでプログラム終了)
-                while time.time() - t_release_start <= t_out_release_safe:
-                    xbee.str_trans('continue? y/n \t')
-                    if xbee.str_receive() == 'y':
-                        break
-                    elif xbee.str_receive() == 'n':
-                        xbee.str_trans('Interrupted for safety')
-                        exit()
                 print_xbee('##--release timeout--##')
             print_xbee("######-----Released-----##### \n \n")
         except Exception as e:
@@ -221,6 +214,14 @@ if __name__ == '__main__':
     phase = other.phase(log_phase)
     print_xbee(f'Phase:\t{phase}')
     if phase == 5:
+        # 落下試験用の安全対策（落下しないときにXbeeでプログラム終了)
+        while time.time() - t_release_start <= t_out_release_safe:
+            xbee.str_trans('continue? y/n \t')
+            if xbee.str_receive() == 'y':
+                break
+            elif xbee.str_receive() == 'n':
+                xbee.str_trans('Interrupted for safety')
+                exit()
         other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
                   gps.gps_data_read(), "Melting Start")
         escape.escape()
@@ -236,18 +237,18 @@ if __name__ == '__main__':
 
     #######--------------------------Center Motor Check--------------------------#######
 
-   # print_xbee('#####-----Cmotor phase start#####')
-    #other.log(log_phase, '6', 'Cmotor phase start',
-              #datetime.datetime.now(), time.time() - t_start)
-   # phase = other.phase(log_phase)
-   # print_xbee(f'Phase:\t{phase}')
-    #if phase == 6:
-       # other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
-                  #gps.gps_data_read(), "Cmotor Start")
-        #escape.escape() ミッション用モーター確認
-        #other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
-                  #gps.gps_data_read(), "Cmotor Finished")
-    #print_xbee('########-----Cmotored-----#######\n \n')
+    print_xbee('#####-----Cmotor phase start#####')
+    other.log(log_phase, '6', 'Cmotor phase start',
+              datetime.datetime.now(), time.time() - t_start)
+    phase = other.phase(log_phase)
+    print_xbee(f'Phase:\t{phase}')
+    if phase == 6:
+        other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
+                  gps.gps_data_read(), "Cmotor Start")
+        mission()
+        other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
+                  gps.gps_data_read(), "Cmotor Finished")
+    print_xbee('########-----Cmotored-----#######\n \n')
 
     #######--------------------------Paraavo--------------------------#######
 
