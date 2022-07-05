@@ -17,7 +17,7 @@ def ue_jug():
     ローバーの状態を確認する関数
     通常状態：True
     逆さになってる：False
-    加速度センサZ軸の正負で判定するよ
+    加速度センサZ軸の正負で判定する
     """
     while 1:
         za = []
@@ -122,11 +122,6 @@ def stuck_avoid():
             lat_new, lon_new = gps.location()
             bool_stuck = stuck_jug(lat_old, lon_old, lat_new, lon_new, 1)
             if bool_stuck == False:
-                # if i == 1 or i == 4 or i == 5:
-                #     print('スタックもう一度引っかからないように避ける')
-                #     motor.move(-60, -60, 2)
-                #     motor.move(-60, 60, 0.5)
-                #     motor.move(80, 80, 3)
                 flag = True
                 break
         if flag:
@@ -137,11 +132,6 @@ def stuck_avoid():
             lat_new, lon_new = gps.location()
             bool_stuck = stuck_jug(lat_old, lon_old, lat_new, lon_new, 1)
             if bool_stuck == False:
-                # if i == 1 or i == 4 or i == 5:
-                #     print('スタックもう一度引っかからないように避ける')
-                #     motor.move(-60, -60, 2)
-                #     motor.move(-60, 60, 0.5)
-                #     motor.move(80, 80, 3)
                 flag = True
                 break
         if flag:
