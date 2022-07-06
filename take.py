@@ -53,7 +53,7 @@ def picture(path, width=320, height=240):
     try:
         make_dir(path)
         with picamera.PiCamera() as camera:
-            camera.rotation = 270
+            camera.rotation = 90
             # 取得した画像の回転
             camera.resolution = (width, height)
             # 取得する画像の解像度を設定→どのような基準で設定するのか
