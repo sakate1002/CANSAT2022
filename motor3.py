@@ -2,6 +2,7 @@ import pigpio
 import time
 import traceback
 import sys
+import stuck
 
 AIN1 = 13
 AIN2 = 19
@@ -74,6 +75,31 @@ def motor(center, t = 0.001, mode = 0):
 
 def motor_stop():
 	pi1.hardware_PWM(PWMA, 500, 0)
+
+"""
+def deceleration_c(center):
+	"""
+	#穏やかに減速するための関数
+	"""
+	for i in range(10):
+		coefficient_powerc = 10 - i
+		coefficient_powerc =/ 10
+		motor(center * coefficient_powerc, 0.1)
+		if i == 9:
+			motor_stop(0.1)
+
+def motor_move(center, t, ue=False):
+	"""
+	#一定時間モーターを動かすための関数
+	#centerは-100~100
+	#tはモーターを動かす時間
+	#ueは期待が逆さまかどうか判断するのを関数内で行うかどうか
+	"""
+	if ue:
+		stuck.ue_jug()
+	motor(center, t)
+	deceleration_c(center, t)
+"""
 
 if __name__ == "__main__":
 	try:
