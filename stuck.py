@@ -66,6 +66,7 @@ def random(a, b, k):
     return ns
 
 
+
 def stuck_avoid_move(x):
     if x == 0:
         print_xbee('sutck_avoid_move():0')
