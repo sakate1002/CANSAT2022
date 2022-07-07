@@ -11,12 +11,12 @@ def pressdetect_release(thd_press_release):
     try:
         pressdata = bme280.bme280_read()
         prevpress = pressdata[1]
-        time.sleep(5)
+        time.sleep(5) #５秒待って次の気圧の値を読むよ
         pressdata = bme280.bme280_read()
         latestpress = pressdata[1]
-        deltP = latestpress - prevpress
+        deltP = latestpress - prevpress #初めにとった気圧-後にとった気圧
         if 0.0 in pressdata:
-            print("bme280rror!")
+            print("bme280error!")
             pressjudge_release = 2
             presscount_release = 0
         elif deltP > thd_press_release:
@@ -42,10 +42,10 @@ def pressdetect_land(anypress):
     try:
         pressdata = bme280.bme280_read()
         Prevpress = pressdata[1]
-        time.sleep(1)
+        time.sleep(1) #1秒待って次の気圧の値を読むよ
         pressdata = bme280.bme280_read()
         Latestpress = pressdata[1]
-        deltP = abs(Latestpress - Prevpress)
+        deltP = abs(Latestpress - Prevpress) #初めにとった気圧-後にとった気圧
         if 0.0 in pressdata:
             print("bme280error!")
             presscount_land = 0
@@ -77,7 +77,7 @@ if __name__ == '__main__':
 
     try:
         while 1:
-            presscount_release, pressjudge_release = pressdetect_release(0.3)
+            presscount_release, pressjudge_release = pressdetect_release(0.3) #閾値0.3
             print(f'count{presscount_release}\tjudge{pressjudge_release}')
             if pressjudge_release == 1:
                 print('release detected')
@@ -87,7 +87,7 @@ if __name__ == '__main__':
 
     try:
         while 1:
-            presscount_land, pressjudge_land = pressdetect_land(0.1)
+            presscount_land, pressjudge_land = pressdetect_land(0.1) #閾値0.1
             print(f'count{presscount_land}\tjudge{pressjudge_land}')
             if pressjudge_land == 1:
                 print('land detected')
