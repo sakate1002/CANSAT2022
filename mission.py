@@ -146,8 +146,8 @@ def picture(path, width=320, height=240):
 
 if __name__ == "__main__":
     photoName = picture('photo/photo', 320, 240)
-    motor(30, 5)
+    motor(-30, 0.5)
     motor_stop()
     photoName = picture('photo/photo', 320, 240)
-    motor(-30, 5)
+    motor(30, 0.5)
     motor_stop()
