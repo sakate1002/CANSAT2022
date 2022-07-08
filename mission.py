@@ -124,7 +124,7 @@ def picture(path, width=320, height=240):
         make_dir(path)
         with picamera.PiCamera() as camera:
             #取得した画像の回転
-            camera.rotation = 270
+            camera.rotation = 90
             #取得する画像の解像度を設定→どのような基準で設定するのか
             #使用するカメラの解像度は静止画解像度で3280×2464
             camera.resolution = (width, height)
