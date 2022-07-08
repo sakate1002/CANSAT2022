@@ -22,8 +22,8 @@ def ue_jug():
     while 1:
         za = []
         for i in range(3):
-            accdata = bmx055.acc_dataRead()
-            za.append(accdata[2])
+            accData = bmx055.acc_dataRead()
+            za.append(accData[2])
             time.sleep(0.2)
         z = max(za)
 
