@@ -245,7 +245,7 @@ if __name__ == '__main__':
     if phase == 6:
         other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
                   gps.gps_data_read(), "Cmotor Start")
-        mission()
+        mission.mission()
         other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
                   gps.gps_data_read(), "Cmotor Finished")
     print_xbee('########-----Cmotored-----#######\n \n')
