@@ -115,7 +115,7 @@ def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/Desktop
         mission_count = 0
         while mission_count < 1:
             if (mission_distance - 10) < mission_distance and mission_distance < (mission_distance + 10):
-                mission()
+                mission.mission()
                 mission_count += 1
         
             else:
@@ -292,7 +292,7 @@ def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/Desktop
                             else:
                                 adj = -30
                         print(f'angle ----- {theta}')
-                        strength_l, strength_r = 70 + adj, 70 - adj
+                        strength_l, strength_r = 70 + adj, -70 - adj
                         motor.motor_continue(strength_l, strength_r)
                         time.sleep(0.04)
                 t_stuck_count += 1
