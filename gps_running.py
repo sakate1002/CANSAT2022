@@ -211,35 +211,35 @@ def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/Desktop
         goal_distance = direction['distance']
         other.print_xbee(f'-----distance: {goal_distance}-----')
 
-        while goal_distance >= thd_distance:
+        
 
-            #ミッション後
-            # ------------- calibration -------------#
-            # xbee.str_trans('calibration Start')
-            other.print_xbee('##--calibration Start--##\n')
-            magx_off, magy_off = calibration.cal(40, -40, 30)
-            print(f'magx_off: {magx_off}\tmagy_off: {magy_off}\n')
-            theta = angle_goal(magx_off, magy_off, lon2, lat2)
-            adjust_direction(theta, magx_off, magy_off, lon2, lat2)
+        #ミッション後
+        # ------------- calibration -------------#
+        # xbee.str_trans('calibration Start')
+        other.print_xbee('##--calibration Start--##\n')
+        magx_off, magy_off = calibration.cal(40, -40, 30)
+        print(f'magx_off: {magx_off}\tmagy_off: {magy_off}\n')
+        theta = angle_goal(magx_off, magy_off, lon2, lat2)
+        adjust_direction(theta, magx_off, magy_off, lon2, lat2)
 
-            t_cal = time.time()
-            lat_old, lon_old = gps.location()
-            while time.time() - t_cal <= t_adj_gps:
-                lat1, lon1 = gps.location()
-                lat_new, lon_new = lat1, lon1
-                direction = gps_navigate.vincenty_inverse(lat1, lon1, lat2, lon2)
-                azimuth, goal_distance = direction["azimuth1"], direction["distance"]
-                other.print_xbee(
-                    f'lat: {lat1}\tlon: {lon1}\tdistance: {goal_distance}\tazimuth: {azimuth}\n')
+        t_cal = time.time()
+        lat_old, lon_old = gps.location()
+        while time.time() - t_cal <= t_adj_gps:
+            lat1, lon1 = gps.location()
+            lat_new, lon_new = lat1, lon1
+            direction = gps_navigate.vincenty_inverse(lat1, lon1, lat2, lon2)
+            azimuth, goal_distance = direction["azimuth1"], direction["distance"]
+            other.print_xbee(
+                f'lat: {lat1}\tlon: {lon1}\tdistance: {goal_distance}\tazimuth: {azimuth}\n')
 
-                if t_stuck_count % 8 == 0:
-                    ##↑何秒おきにスタックジャッジするかを決める##
-                    if stuck.stuck_jug(lat_old, lon_old, lat_new, lon_new, 4):
-                        pass
-                    else:
-                        stuck.stuck_avoid()
-                        pass
-                    lat_old, lon_old = gps.location()
+            if t_stuck_count % 8 == 0:
+                ##↑何秒おきにスタックジャッジするかを決める##
+                if stuck.stuck_jug(lat_old, lon_old, lat_new, lon_new, 4):
+                    pass
+                else:
+                    stuck.stuck_avoid()
+                    pass
+                lat_old, lon_old = gps.location()
 
                 if goal_distance <= thd_distance:
                     break
@@ -301,9 +301,9 @@ def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/Desktop
             time.sleep(2)
             lat_new, lon_new = gps.location()
 
-    direction = calibration.calculate_direction(lon2, lat2)
-    goal_distance = direction['distance']
-    other.print_xbee(f'-----distance: {goal_distance}-----')
+            direction = calibration.calculate_direction(lon2, lat2)
+            goal_distance = direction['distance']
+            other.print_xbee(f'-----distance: {goal_distance}-----')
 
 if __name__ == '__main__':
     # lat2 = 35.918548
