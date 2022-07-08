@@ -36,13 +36,13 @@ def ue_jug():
             print(f'下だよ{ue_count}')
             print(f'acc: {z}')
             if ue_count > 2:
-                motor.move(30, -30, 0.008, False)
+                motor.move(30, -30, 1, False)
             elif ue_count > 4:
-                motor.move(70, -70, 0.008, False)
+                motor.move(70, -70, 1, False)
             elif ue_count > 6:
-                motor.move(100, -100, 0.05, False)
+                motor.move(100, -100, 1, False)
             else:
-                motor.move(12, -12, 0.2, False)
+                motor.move(12, -12, 1, False)
             time.sleep(2)
             ue_count += 1
 
