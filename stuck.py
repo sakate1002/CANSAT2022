@@ -36,13 +36,13 @@ def ue_jug():
             print(f'下だよ{ue_count}')
             print(f'acc: {z}')
             if ue_count > 2:
-                motor.move(30, -30, 1, False)
+                motor.move(50, -50, 1, False)
             elif ue_count > 4:
                 motor.move(70, -70, 1, False)
             elif ue_count > 6:
                 motor.move(100, -100, 1, False)
             else:
-                motor.move(12, -12, 1, False)
+                motor.move(30, -30, 1, False)
             time.sleep(2)
             ue_count += 1
 
@@ -70,12 +70,14 @@ def random(a, b, k):
 def stuck_avoid_move(x):
     if x == 0:
         print_xbee('sutck_avoid_move():0')
-        motor.move(100, 100, 5)
-        motor.move(60, -60, 5)
+        motor.move(80, 80, 5)
+        motor.move(80, -80, 5)
+
     elif x == 1:
         print_xbee('sutck_avoid_move():1')
-        motor.move(-50, -50, 5)
+        motor.move(-60, -60, 5)
         motor.move(-80, 80, 5)
+        
     elif x == 2:
         print_xbee('sutck_avoid_move():2')
         motor.move(100, 100, 5)
