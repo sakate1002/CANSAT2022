@@ -1,16 +1,16 @@
 import sys
-sys.path.append('/home/cansat2022/Desktop/CANSAT2022/SensorModule/gps')
-sys.path.append('/home/cansat2022/Desktop/CANSAT2022/SensorModule/communication')
-sys.path.append('/home/cansat2022/Desktop/CANSAT2022/SensorModule/9-axis')
-sys.path.append('/home/cansat2022/Desktop/CANSAT2022/SensorModule/camera')
-sys.path.append('/home/cansat2022/Desktop/CANSAT2022/SensorModule/melt')
-sys.path.append('/home/cansat2022/Desktop/CANSAT2022/SensorModule/environmental')
-sys.path.append('/home/cansat2022/Desktop/CANSAT2022/SensorModule/motor')
-sys.path.append('/home/cansat2022/Desktop/CANSAT2022/SensorModule/illuminance')
-sys.path.append('/home/cansat2022/Desktop/CANSAT2022/detection')
-sys.path.append('/home/cansat2022/Desktop/CANSAT2022/other')
-sys.path.append('/home/cansat2022/Desktop/CANSAT2022/test')
-sys.path.append('/home/cansat2022/Desktop/CANSAT2022/calibration')
+sys.path.append('/home/cansat2022/CANSAT2022/SensorModule/gps')
+sys.path.append('/home/cansat2022/CANSAT2022/SensorModule/communication')
+sys.path.append('/home/cansat2022/CANSAT2022/SensorModule/9-axis')
+sys.path.append('/home/cansat2022/CANSAT2022/SensorModule/camera')
+sys.path.append('/home/cansat2022/CANSAT2022/SensorModule/melt')
+sys.path.append('/home/cansat2022/CANSAT2022/SensorModule/environmental')
+sys.path.append('/home/cansat2022/CANSAT2022/SensorModule/motor')
+sys.path.append('/home/cansat2022/CANSAT2022/SensorModule/illuminance')
+sys.path.append('/home/cansat2022/CANSAT2022/detection')
+sys.path.append('/home/cansat2022/CANSAT2022/other')
+sys.path.append('/home/cansat2022/CANSAT2022/test')
+sys.path.append('/home/cansat2022/CANSAT2022/calibration')
 
 import mission
 import time
@@ -67,19 +67,19 @@ G_thd = 50
 path_photo_imagerun = f'photostorage/ImageGuidance_{dateTime.month}-{dateTime.day}-{dateTime.hour}-{dateTime.minute}'
 
 # variable for log
-log_phase = other.filename('/home/cansat2022/Desktop/CANSAT2022/log/phaseLog', 'txt')
+log_phase = other.filename('/home/cansat2022/CANSAT2022/log/phaseLog', 'txt')
 log_release = other.filename(
-    '/home/cansat2022/Desktop/CANSAT2022/log/releaselog', 'txt')
+    '/home/cansat2022/CANSAT2022/log/releaselog', 'txt')
 log_landing = other.filename(
-    '/home/cansat2022/Desktop/CANSAT2022/log/landingLog', 'txt')
-log_phototest = other.filename('/home/cansat2022/Desktop/CANSAT2022/log/phototest', 'txt')
+    '/home/cansat2022/CANSAT2022/log/landingLog', 'txt')
+log_phototest = other.filename('/home/cansat2022/CANSAT2022/log/phototest', 'txt')
 log_melting = other.filename(
-    '/home/cansat2022/Desktop/CANSAT2022/log/meltingLog', 'txt')
+    '/home/cansat2022/CANSAT2022/log/meltingLog', 'txt')
 log_paraavoidance = other.filename(
-    '/home/cansat2022/Desktop/CANSAT2022/log/paraAvoidanceLog', 'txt')
+    '/home/cansat2022/CANSAT2022/log/paraAvoidanceLog', 'txt')
 log_magrunning = other.filename(
-    '/home/cansat2022/Desktop/CANSAT2022/log/MagrunningLog', 'txt')
-path_paradete = '/home/cansat2022/Desktop/CANSAT2022/photo_paradete/paradete'
+    '/home/cansat2022/CANSAT2022/log/MagrunningLog', 'txt')
+path_paradete = '/home/cansat2022/CANSAT2022/photo_paradete/paradete'
 
 def setup():
     global phase
@@ -276,5 +276,3 @@ if __name__ == '__main__':
     #     print_xbee('#####-----Error(paraavo)-----#####')
     #     print_xbee('#####-----Error(paraavo)-----#####\n \n')
     #######-----------------------------------------------------------########
-
-    
