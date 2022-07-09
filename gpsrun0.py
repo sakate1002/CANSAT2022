@@ -111,7 +111,7 @@ def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/CANSAT2
         # ------------- calibration -------------#
         # xbee.str_trans('calibration Start')
         other.print_xbee('##--calibration Start--##\n')
-        magx_off, magy_off = calibration.cal(40, -40, 30)
+        magx_off, magy_off = calibration.cal(40, 40, 30)
         print(f'magx_off: {magx_off}\tmagy_off: {magy_off}\n')
 
         theta = angle_goal(magx_off, magy_off, lon2, lat2)
