@@ -63,7 +63,7 @@ def adjust_direction(theta, magx_off, magy_off, lon2, lat2):
             other.print_xbee(
                 "!!!!can't ajdust direction.   start stuck avoid!!!!!")
             stuck.stuck_avoid()
-            magx_off, magy_off = calibration.cal(40, -40, 30)
+            magx_off, magy_off = calibration.cal(40, 40, 30)
             stuck_count = -1
         if stuck_count % 7 == 0:
             other.print_xbee('Increase output')
@@ -71,21 +71,21 @@ def adjust_direction(theta, magx_off, magy_off, lon2, lat2):
         if 30 <= theta <= 60:
             other.print_xbee(
                 f'theta = {theta}\t---rotation_ver1 (stuck:{stuck_count})')
-            motor.move(force, -force, t_small)
+            motor.move(force, force, t_small)
 
         elif 60 < theta <= 180:
             other.print_xbee(
                 f'theta = {theta}\t---rotation_ver2 (stuck:{stuck_count})')
-            motor.move(force, -force, t_big)
+            motor.move(force, force, t_big)
 
         elif -60 <= theta <= -30:
             other.print_xbee(
                 f'theta = {theta}\t---rotation_ver3 (stuck:{stuck_count})')
-            motor.move(-force, force, t_small)
+            motor.move(-force, -force, t_small)
         elif -180 < theta < -60:
             other.print_xbee(
                 f'theta = {theta}\t---rotation_ver4 (stuck:{stuck_count})')
-            motor.move(-force, force, t_big)
+            motor.move(-force, -force, t_big)
         else:
             print(f'theta = {theta}')
 
