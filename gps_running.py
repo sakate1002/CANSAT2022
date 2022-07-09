@@ -98,7 +98,7 @@ def adjust_direction(theta, magx_off, magy_off, lon2, lat2):
     other.print_xbee(f'theta = {theta} \t rotation finished!!!')
 
 
-def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/Desktop/CANSAT2022/log/gpsrunningLog', t_start=0):
+def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/CANSAT2022/log/gpsrunningLog', t_start=0):
     """
     GPS走行の関数
     統合する場合はprintをXbee.str_transに変更，other.saveLogのコメントアウトを外す
