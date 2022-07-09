@@ -64,7 +64,7 @@ def goal_detection(imgpath: str, G_thd: float):
 
         # 最小外接円を描いた写真の保存先
         path_detection = other.filename(
-            '/home/cansat2022/Desktop/CANSAT2022/detected/Detected-', 'jpg')
+            '/home/cansat2022/CANSAT2022/detected/Detected-', 'jpg')
 
         red_min = np.array([0, 64, 0], np.uint8) #赤色検知最小値
         red_max = np.array([15, 255, 255], np.uint8) #赤色検知最大値
@@ -171,7 +171,7 @@ def image_guided_driving(log_photorunning, G_thd, magx_off, magy_off, lon2, lat2
         auto_count = 0
         while 1:
             stuck.ue_jug()
-            path_photo = '/home/cansat2022/Desktop/CANSAT2022/photo_imageguide/ImageGuide-'
+            path_photo = '/home/cansat2022/CANSAT2022/photo_imageguide/ImageGuide-'
             photoName = take.picture(path_photo)
             goalflug, goalarea, gap, imgname, imgname2 = goal_detection(
                 photoName, 50)
@@ -189,16 +189,16 @@ def image_guided_driving(log_photorunning, G_thd, magx_off, magy_off, lon2, lat2
 
             if goalflug == -1 or goalflug == 1000:
                 print_xbee('Nogoal detected')
-                motor.move(40, -40, 0.1)
+                motor.move(50, -62, 0.1)
                 auto_count += 1
             elif goalarea <= area_long:
                 auto_count = 0
                 if -100 <= gap and gap <= -65:
                     print_xbee('Turn left')
-                    motor.move(-33, 33, 0.1)
+                    motor.move(-33, -40, 0.1)
                 elif 65 <= gap and gap <= 100:
                     print_xbee('Turn right')
-                    motor.move(33, -33, 0.1)
+                    motor.move(33, 40, 0.1)
                 else:
                     print_xbee('Go straight long')
                     adjustment_mag(40, 1.4, magx_off, magy_off)
@@ -206,10 +206,10 @@ def image_guided_driving(log_photorunning, G_thd, magx_off, magy_off, lon2, lat2
                 auto_count = 0
                 if -100 <= gap and gap <= -65:
                     print_xbee('Turn left')
-                    motor.move(-25, 25, 0.1)
+                    motor.move(-25, -30, 0.1)
                 elif 65 <= gap and gap <= 100:
                     print_xbee('Turn right')
-                    motor.move(25, -25, 0.1)
+                    motor.move(25, 30, 0.1)
                 else:
                     print_xbee('Go straight middle')
                     adjustment_mag(40, 0.8, magx_off, magy_off)
@@ -222,14 +222,14 @@ def image_guided_driving(log_photorunning, G_thd, magx_off, magy_off, lon2, lat2
                     if count_short_l % 4 == 0: #4の倍数ごとに出力を上げていくっ！
                         adj_short += 3 #モーターの出力+3
                         print_xbee('#-Power up-#')
-                    motor.move(-20 - adj_short, 20 + adj_short, 0.1)
+                    motor.move(-20 - adj_short, -24 - adj_short, 0.1)
                 elif 65 <= gap and gap <= 100:
                     print_xbee('Turn right')
                     count_short_r += 1
                     if count_short_r % 4 == 0: #4の倍数ごとに出力を上げていくっ！
                         adj_short += 3 #モーターの出力+3
                         print_xbee('#-Power up-#')
-                    motor.move(20 + adj_short, -20 - adj_short, 0.1)
+                    motor.move(20 + adj_short, 24 + adj_short, 0.1)
                 else:
                     print_xbee('Go stright short')
                     adjustment_mag(40, 0.6, magx_off, magy_off)
@@ -247,7 +247,7 @@ def image_guided_driving(log_photorunning, G_thd, magx_off, magy_off, lon2, lat2
                 goal_distance = direction['distance']
                 if goal_distance >= thd_distance + 2:
                     gps_running.drive(lon2, lat2, thd_distance, t_adj_gps,
-                                     logpath='/home/cansat2022/Desktop/CANSAT2022/log/gpsrunning(image)Log', t_start=0)
+                                     logpath='/home/cansat2022/CANSAT2022/log/gpsrunning(image)Log', t_start=0)
     except KeyboardInterrupt:
         print_xbee('stop')
     except Exception as e:
@@ -261,12 +261,12 @@ if __name__ == "__main__":
         lat2 = 35.9236093
         lon2 = 139.9118821
         G_thd = 60
-        log_photorunning = '/home/cansat2022/Desktop/CANSAT2022/log/photorunning_practice.txt'
+        log_photorunning = '/home/cansat2022/CANSAT2022/log/photorunning_practice.txt'
         motor.setup()
 
         # calibration
         print_xbee('##--calibration Start--##\n')
-        magx_off, magy_off = calibration.cal(40, -40, 30)
+        magx_off, magy_off = calibration.cal(40, 40, 30)
         print_xbee(f'magx_off: {magx_off}\tmagy_off: {magy_off}\n')
         print_xbee('##--calibration end--##')
 
