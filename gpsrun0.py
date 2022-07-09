@@ -106,7 +106,7 @@ def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/CANSAT2
     goal_distance = direction['distance']
     while goal_distance >= thd_distance:
         t_stuck_count = 1
-        stuck.ue_jug()
+        #stuck.ue_jug()
 
         # ------------- calibration -------------#
         # xbee.str_trans('calibration Start')
