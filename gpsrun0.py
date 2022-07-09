@@ -209,8 +209,8 @@ if __name__ == '__main__':
     # lon2 = 139.908896
     # lat2 = 35.9234892
     # lon2 = 139.9118744
-    lat2 = 35.9185854
-    lon2 = 139.9101444
+    lat2 = 35.9237543
+    lon2 = 139.9112917
     gps.open_gps()
     bmx055.bmx055_setup()
     motor.setup()
