@@ -129,7 +129,7 @@ def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/CANSAT2
 
             if t_stuck_count % 8 == 0:
                 ##↑何秒おきにスタックジャッジするかを決める##
-                if stuck.stuck_jug(lat_old, lon_old, lat_new, lon_new, 4):
+                if stuck.stuck_jug(lat_old, lon_old, lat_new, lon_new, 1):
                     pass
                 else:
                     stuck.stuck_avoid()
@@ -189,7 +189,7 @@ def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/CANSAT2
                         else:
                             adj = -30
                     print(f'angle ----- {theta}')
-                    strength_l, strength_r = 50 + adj, -40 - adj
+                    strength_l, strength_r = 70 + adj, -70 - adj
                     motor.motor_continue(strength_l, strength_r)
                     time.sleep(0.04)
             t_stuck_count += 1
