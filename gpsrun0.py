@@ -56,7 +56,7 @@ def adjust_direction(theta, magx_off, magy_off, lon2, lat2):
     stuck_count = 1
     t_small = 0.1
     t_big = 0.2
-    force = 35
+    force = 25
     while 30 < theta <= 180 or -180 < theta < -30:
         if stuck_count >= 16:
             ##方向調整が不可能な場合はスタックしたとみなして、もう一度キャリブレーションからスタート##
@@ -106,7 +106,7 @@ def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/CANSAT2
     goal_distance = direction['distance']
     while goal_distance >= thd_distance:
         t_stuck_count = 1
-        #stuck.ue_jug()
+        stuck.ue_jug()
 
         # ------------- calibration -------------#
         # xbee.str_trans('calibration Start')
