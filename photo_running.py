@@ -189,7 +189,7 @@ def image_guided_driving(log_photorunning, G_thd, magx_off, magy_off, lon2, lat2
 
             if goalflug == -1 or goalflug == 1000:
                 print_xbee('Nogoal detected')
-                motor.move(50, -50, 0.1)
+                motor.move(50, 50, 0.1)
                 auto_count += 1
             elif goalarea <= area_long:
                 auto_count = 0
