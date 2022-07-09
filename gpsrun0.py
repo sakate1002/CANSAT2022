@@ -63,7 +63,7 @@ def adjust_direction(theta, magx_off, magy_off, lon2, lat2):
             other.print_xbee(
                 "!!!!can't ajdust direction.   start stuck avoid!!!!!")
             stuck.stuck_avoid()
-            magx_off, magy_off = calibration.cal(40, 40, 30)
+            magx_off, magy_off = calibration.cal(30, 30, 30)
             stuck_count = -1
         if stuck_count % 7 == 0:
             other.print_xbee('Increase output')
@@ -190,7 +190,7 @@ def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/CANSAT2
                             adj = -30
                     print(f'angle ----- {theta}')
                     strength_l, strength_r = 70 + adj, -70 - adj
-                    motor.motor_move(strength_l, strength_r, 3)
+                    motor.motor_continue(strength_l, strength_r)
                     time.sleep(0.04)
             t_stuck_count += 1
             #other.log(logpath, datetime.datetime.now(), time.time() -
