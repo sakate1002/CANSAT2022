@@ -234,7 +234,7 @@ def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/CANSAT2
 
             if t_stuck_count % 8 == 0:
                 ##↑何秒おきにスタックジャッジするかを決める##
-                if stuck.stuck_jug(lat_old, lon_old, lat_new, lon_new, 4):
+                if stuck.stuck_jug(lat_old, lon_old, lat_new, lon_new, 1):
                     pass
                 else:
                     stuck.stuck_avoid()
