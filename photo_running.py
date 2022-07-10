@@ -222,14 +222,14 @@ def image_guided_driving(log_photorunning, G_thd, magx_off, magy_off, lon2, lat2
                     if count_short_l % 4 == 0: #4の倍数ごとに出力を上げていくっ！
                         adj_short += 3 #モーターの出力+3
                         print_xbee('#-Power up-#')
-                    motor.move(-20 - adj_short, -20 + adj_short, 0.1)
+                    motor.move(-20 - adj_short, -20 - adj_short, 0.1)
                 elif 65 <= gap and gap <= 100:
                     print_xbee('Turn right')
                     count_short_r += 1
                     if count_short_r % 4 == 0: #4の倍数ごとに出力を上げていくっ！
                         adj_short += 3 #モーターの出力+3
                         print_xbee('#-Power up-#')
-                    motor.move(20 + adj_short, 20 - adj_short, 0.1)
+                    motor.move(20 + adj_short, 20 + adj_short, 0.1)
                 else:
                     print_xbee('Go stright short')
                     adjustment_mag(40, 0.6, magx_off, magy_off)
