@@ -189,16 +189,16 @@ def image_guided_driving(log_photorunning, G_thd, magx_off, magy_off, lon2, lat2
 
             if goalflug == -1 or goalflug == 1000:
                 print_xbee('Nogoal detected')
-                motor.move(50, 50, 0.1)
+                motor.move(50, 50, 1)
                 auto_count += 1
             elif goalarea <= area_long:
                 auto_count = 0
                 if -100 <= gap and gap <= -65:
                     print_xbee('Turn left')
-                    motor.move(-33, -33, 0.1)
+                    motor.move(-33, -33, 1)
                 elif 65 <= gap and gap <= 100:
                     print_xbee('Turn right')
-                    motor.move(33, 33, 0.1)
+                    motor.move(33, 33, 1)
                 else:
                     print_xbee('Go straight long')
                     adjustment_mag(40, 1.4, magx_off, magy_off)
@@ -206,10 +206,10 @@ def image_guided_driving(log_photorunning, G_thd, magx_off, magy_off, lon2, lat2
                 auto_count = 0
                 if -100 <= gap and gap <= -65:
                     print_xbee('Turn left')
-                    motor.move(-25, -25, 0.1)
+                    motor.move(-25, -25, 1)
                 elif 65 <= gap and gap <= 100:
                     print_xbee('Turn right')
-                    motor.move(25, 25, 0.1)
+                    motor.move(25, 25, 1)
                 else:
                     print_xbee('Go straight middle')
                     adjustment_mag(40, 0.8, magx_off, magy_off)
@@ -258,8 +258,8 @@ def image_guided_driving(log_photorunning, G_thd, magx_off, magy_off, lon2, lat2
 if __name__ == "__main__":
     try:
         # Initialize
-        lat2 = 35.9236093
-        lon2 = 139.9118821
+        lat2 = 35.9237030
+        lon2 = 139.9116424
         G_thd = 60
         log_photorunning = '/home/cansat2022/CANSAT2022/log/photorunning_practice.txt'
         motor.setup()
