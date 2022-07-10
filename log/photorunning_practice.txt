@@ -118,3 +118,17 @@
 -276.5497190952301	1000	1000	1000	/home/cansat2022/CANSAT2022/photo_imageguide/ImageGuide-0059.jpg	/home/cansat2022/CANSAT2022/detected/Detected-0048.jpg	
 -286.76978826522827	1000	1000	1000	/home/cansat2022/CANSAT2022/photo_imageguide/ImageGuide-0060.jpg	/home/cansat2022/CANSAT2022/detected/Detected-0048.jpg	
 -286.76978826522827	1000	1000	1000	/home/cansat2022/CANSAT2022/photo_imageguide/ImageGuide-0060.jpg	/home/cansat2022/CANSAT2022/detected/Detected-0048.jpg	
+-5.869461297988892	0	0.8776041666666666	8.75	/home/cansat2022/CANSAT2022/photo_imageguide/ImageGuide-0061.jpg	/home/cansat2022/CANSAT2022/detected/Detected-0048.jpg	
+-5.869461297988892	0	0.8776041666666666	8.75	/home/cansat2022/CANSAT2022/photo_imageguide/ImageGuide-0061.jpg	/home/cansat2022/CANSAT2022/detected/Detected-0048.jpg	
+-25.159517288208008	0	0.763671875	-14.374999999999998	/home/cansat2022/CANSAT2022/photo_imageguide/ImageGuide-0062.jpg	/home/cansat2022/CANSAT2022/detected/Detected-0049.jpg	
+-25.159517288208008	0	0.763671875	-14.374999999999998	/home/cansat2022/CANSAT2022/photo_imageguide/ImageGuide-0062.jpg	/home/cansat2022/CANSAT2022/detected/Detected-0049.jpg	
+-103.24991822242737	0	0.3040364583333333	-20.625	/home/cansat2022/CANSAT2022/photo_imageguide/ImageGuide-0063.jpg	/home/cansat2022/CANSAT2022/detected/Detected-0050.jpg	
+-103.24991822242737	0	0.3040364583333333	-20.625	/home/cansat2022/CANSAT2022/photo_imageguide/ImageGuide-0063.jpg	/home/cansat2022/CANSAT2022/detected/Detected-0050.jpg	
+-160.96000027656555	0	0.36002604166666663	-44.375	/home/cansat2022/CANSAT2022/photo_imageguide/ImageGuide-0064.jpg	/home/cansat2022/CANSAT2022/detected/Detected-0051.jpg	
+-160.96000027656555	0	0.36002604166666663	-44.375	/home/cansat2022/CANSAT2022/photo_imageguide/ImageGuide-0064.jpg	/home/cansat2022/CANSAT2022/detected/Detected-0051.jpg	
+-192.32993602752686	1000	1000	1000	/home/cansat2022/CANSAT2022/photo_imageguide/ImageGuide-0065.jpg	/home/cansat2022/CANSAT2022/detected/Detected-0052.jpg	
+-192.32993602752686	1000	1000	1000	/home/cansat2022/CANSAT2022/photo_imageguide/ImageGuide-0065.jpg	/home/cansat2022/CANSAT2022/detected/Detected-0052.jpg	
+-199.33019137382507	1000	1000	1000	/home/cansat2022/CANSAT2022/photo_imageguide/ImageGuide-0066.jpg	/home/cansat2022/CANSAT2022/detected/Detected-0052.jpg	
+-199.33019137382507	1000	1000	1000	/home/cansat2022/CANSAT2022/photo_imageguide/ImageGuide-0066.jpg	/home/cansat2022/CANSAT2022/detected/Detected-0052.jpg	
+-203.0899486541748	1000	1000	1000	/home/cansat2022/CANSAT2022/photo_imageguide/ImageGuide-0067.jpg	/home/cansat2022/CANSAT2022/detected/Detected-0052.jpg	
+-203.0899486541748	1000	1000	1000	/home/cansat2022/CANSAT2022/photo_imageguide/ImageGuide-0067.jpg	/home/cansat2022/CANSAT2022/detected/Detected-0052.jpg	
