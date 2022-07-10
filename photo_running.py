@@ -69,6 +69,11 @@ def goal_detection(imgpath: str, G_thd: float):
         red_min = np.array([0, 64, 0], np.uint8) #赤色検知最小値
         red_max = np.array([15, 255, 255], np.uint8) #赤色検知最大値
         mask = cv2.inRange(img_hsv, red_min, red_max)
+
+        #red_min = np.array([0, 64, 0], np.uint8) #赤色検知最小値
+        #red_max = np.array([15, 255, 255], np.uint8) #赤色検知最大値
+        #mask2 = cv2.inRange(img_hsv, red_min, red_max)
+        
         contours, hierarchy = cv2.findContours(
             mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
