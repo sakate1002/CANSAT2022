@@ -26,7 +26,7 @@ import paradetection
 import paraavoidance
 import other
 import calibration
-import release
+import release_land
 import land
 import motor
 import stuck
@@ -133,7 +133,7 @@ if __name__ == '__main__':
         try:
             while time.time() - t_release_start <= t_out_release:
                 print_xbee(f'loop_release\t {i}')
-                press_count_release, press_judge_release = release.pressdetect_release(
+                press_count_release, press_judge_release = release_land.pressdetect_release(
                     thd_press_release, t_delta_release)
                 print_xbee(
                     f'count:{press_count_release}\tjudge{press_judge_release}')
@@ -168,7 +168,7 @@ if __name__ == '__main__':
             i = 1
             while time.time() - t_land_start <= t_out_land:
                 print_xbee(f"loop_land\t{i}")
-                press_count_release, press_judge_release = land.pressdetect_land(
+                press_count_release, press_judge_release = release_land.pressdetect_land(
                     thd_press_land)
                 print_xbee(
                     f'count:{press_count_release}\tjudge{press_judge_release}')
