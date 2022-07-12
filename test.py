@@ -108,4 +108,4 @@ def move(strength_l, strength_r, t_moving, ue=False):
 if __name__ == '__main__':
     setup()
     while 1:
-         move(50, 50, 2)
+         move(50, 50, 60)
