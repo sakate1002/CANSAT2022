@@ -53,7 +53,7 @@ def pressdetect_land(anypress):
             press_judge_land = 2
         elif deltP < anypress:
             press_count_land += 1
-            if press_count_land > 4:
+            if press_count_land > 5:
                 press_judge_land = 1
                 print("presslandjudge")
         else:
