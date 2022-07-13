@@ -5,13 +5,13 @@ import bme280
 import time
 
 
-def pressdetect_release(thd_press_release):
+def pressdetect_release(thd_press_release, t_delta_release):
     global presscount_release
     global pressjudge_release
     try:
         pressdata = bme280.bme280_read()
         prevpress = pressdata[1]
-        time.sleep(5) #５秒待って次の気圧の値を読むよ
+        time.sleep(t_delta_release) #５秒待って次の気圧の値を読むよ
         pressdata = bme280.bme280_read()
         latestpress = pressdata[1]
         deltP = latestpress - prevpress #初めにとった気圧-後にとった気圧
@@ -21,7 +21,7 @@ def pressdetect_release(thd_press_release):
             presscount_release = 0
         elif deltP > thd_press_release:
             presscount_release += 1
-            if presscount_release > 2:
+            if presscount_release > 1:
                 pressjudge_release = 1
                 print("pressreleasejudge")
         else:
