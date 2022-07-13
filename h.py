@@ -99,7 +99,7 @@ if __name__ == '__main__':
             while time.time() - t_release_start <= t_out_release:
                 print_xbee(f'loop_release\t {i}')
                 press_count_release, press_judge_release = release_land.pressdetect_release(
-                    thd_press_release, t_delta_release)
+                    thd_press_release)
                 print_xbee(
                     f'count:{press_count_release}\tjudge{press_judge_release}')
                 other.log(log_release, datetime.datetime.now(), time.time() - t_start, gps.gps_data_read(),
