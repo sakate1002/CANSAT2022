@@ -77,7 +77,7 @@ if __name__ == '__main__':
 
     try:
         while 1:
-            press_count_release, press_judge_release = pressdetect_release(0.3) #閾値0.3
+            press_count_release, press_judge_release = pressdetect_release(0.3,0.5) 
             print(f'count{press_count_release}\tjudge{press_judge_release}')
             if press_judge_release == 1:
                 print('release detected')
