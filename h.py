@@ -135,11 +135,11 @@ if __name__ == '__main__':
             i = 1
             while time.time() - t_land_start <= t_out_land:
                 print_xbee(f"loop_land\t{i}")
-                press_count_release, press_judge_release = release_land.pressdetect_land(
+                press_count_land, press_judge_land = release_land.pressdetect_land(
                     thd_press_land)
                 print_xbee(
-                    f'count:{press_count_release}\tjudge{press_judge_release}')
-                if press_judge_release == 1:
+                    f'count:{press_count_land}\tjudge{press_judge_land}')
+                if press_judge_land == 1:
                     print_xbee('Landed\n \n')
                     print("landed")
                     break

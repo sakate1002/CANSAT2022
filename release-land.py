@@ -37,8 +37,8 @@ def pressdetect_land(anypress):
     気圧情報による着地判定用
     引数はどのくらい気圧が変化したら判定にするかの閾値
     """
-    global presscount_land
-    global pressjudge_land
+    global press_count_land
+    global press_judge_land
     try:
         pressdata = bme280.bme280_read()
         Prevpress = pressdata[1]
@@ -48,19 +48,19 @@ def pressdetect_land(anypress):
         deltP = abs(Latestpress - Prevpress) #初めにとった気圧-後にとった気圧
         if 0.0 in pressdata:
             print("bme280error!")
-            presscount_land = 0
-            pressjudge_land = 2
+            press_count_land = 0
+            press_judge_land = 2
         elif deltP < anypress:
-            presscount_land += 1
-            if presscount_land > 4:
-                pressjudge_land = 1
+            press_count_land += 1
+            if press_count_land > 4:
+                press_judge_land = 1
                 print("presslandjudge")
         else:
-            presscount_land = 0
+            press_count_land = 0
     except:
-        presscount_land = 0
-        pressjudge_land = 2
-    return presscount_land, pressjudge_land
+        press_count_land = 0
+        press_judge_land = 2
+    return press_count_land, press_judge_land
 
 
 
@@ -69,17 +69,17 @@ if __name__ == '__main__':
     bme280.bme280_calib_param()
     startTime = time.time()
     #放出判定用
-    presscount_release = 0
-    pressjudge_release = 0
+    press_count_release = 0
+    press_judge_release = 0
     #着地判定用
-    presscount_land = 0
-    pressjudge_land = 0
+    press_count_land = 0
+    press_judge_land = 0
 
     try:
         while 1:
-            presscount_release, pressjudge_release = pressdetect_release(0.3) #閾値0.3
-            print(f'count{presscount_release}\tjudge{pressjudge_release}')
-            if pressjudge_release == 1:
+            press_count_release, press_judge_release = pressdetect_release(0.3) #閾値0.3
+            print(f'count{press_count_release}\tjudge{press_judge_release}')
+            if press_judge_release == 1:
                 print('release detected')
                 break
     except KeyboardInterrupt:
@@ -87,9 +87,9 @@ if __name__ == '__main__':
 
     try:
         while 1:
-            presscount_land, pressjudge_land = pressdetect_land(0.1) #閾値0.1
-            print(f'count{presscount_land}\tjudge{pressjudge_land}')
-            if pressjudge_land == 1:
+            press_count_land, press_judge_land = pressdetect_land(0.1) #閾値0.1
+            print(f'count{press_count_land}\tjudge{press_judge_land}')
+            if press_judge_land == 1:
                 print('land detected')
                 break
     except KeyboardInterrupt:
