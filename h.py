@@ -42,8 +42,6 @@ t_delta_release = 1  #時間を伸ばす！エレベーター
 # variable for landing
 thd_press_land = 2
 
-press_judge_release = 0
-
 log_phase = other.filename('/home/cansat2022/CANSAT2022/log/phaseLog', 'txt')
 log_release = other.filename(
     '/home/cansat2022/CANSAT2022/log/releaselog', 'txt')
@@ -100,6 +98,7 @@ if __name__ == '__main__':
         try:
             while time.time() - t_release_start <= t_out_release:
                 print_xbee(f'loop_release\t {i}')
+                print(release_land.pressdetect_release(thd_press_release,t_delta_release))
                 press_count_release, press_judge_release = release_land.pressdetect_release(
                     thd_press_release,t_delta_release)
                 print_xbee(
