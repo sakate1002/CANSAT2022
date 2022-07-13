@@ -36,7 +36,7 @@ t_out_land = 30
 t_out_release_safe = 1000
 
 # variable for release
-thd_press_release = 1
+thd_press_release = 0.3
 t_delta_release = 1  #時間を伸ばす！エレベーター
 
 # variable for landing
@@ -101,7 +101,7 @@ if __name__ == '__main__':
                 press_count_release, press_judge_release = release_land.pressdetect_release(thd_press_release,t_delta_release)
                 print_xbee(
                     f'count:{press_count_release}\tjudge{press_judge_release}')
-                other.log(log_release, datetime.datetime.now(), time.time() - t_start, gps.gps_data_read(),
+                other.log(log_release, datetime.datetime.now(), time.time() - t_start,
                           bme280.bme280_read(), press_count_release, press_judge_release)
                 if press_judge_release == 1:
                     print_xbee('Release\n \n')
@@ -145,12 +145,11 @@ if __name__ == '__main__':
                 else:
                     print_xbee('Not Landed\n \n')
                     print("not landed")
-                other.log(log_landing, datetime.datetime.now(), time.time() - t_start,
-                          gps.gps_data_read(), bme280.bme280_read())
+                other.log(log_landing, datetime.datetime.now(), time.time() - t_start, bme280.bme280_read())
                 i += 1
             else:
                 print_xbee('Landed Timeout')
-            other.log(log_landing, datetime.datetime.now(), time.time() - t_start, gps.gps_data_read(), bme280.bme280_read(),
+            other.log(log_landing, datetime.datetime.now(), time.time() - t_start, bme280.bme280_read(),
                       'Land judge finished')
             print_xbee('######-----Landed-----######\n \n')
     except Exception as e:
