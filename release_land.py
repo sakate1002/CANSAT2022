@@ -69,17 +69,17 @@ if __name__ == '__main__':
     bme280.bme280_calib_param()
     startTime = time.time()
     #放出判定用
-    presscount_release = 0
-    pressjudge_release = 0
+    press_count_release = 0
+    press_judge_release = 0
     #着地判定用
-    presscount_land = 0
-    pressjudge_land = 0
+    press_count_land = 0
+    press_judge_land = 0
 
     try:
         while 1:
-            presscount_release, pressjudge_release = pressdetect_release(0.3) #閾値0.3
-            print(f'count{presscount_release}\tjudge{pressjudge_release}')
-            if pressjudge_release == 1:
+            press_count_release, press_judge_release = pressdetect_release(0.3) #閾値0.3
+            print(f'count{press_count_release}\tjudge{press_judge_release}')
+            if press_judge_release == 1:
                 print('release detected')
                 break
     except KeyboardInterrupt:
@@ -87,9 +87,9 @@ if __name__ == '__main__':
 
     try:
         while 1:
-            presscount_land, pressjudge_land = pressdetect_land(0.1) #閾値0.1
-            print(f'count{presscount_land}\tjudge{pressjudge_land}')
-            if pressjudge_land == 1:
+            press_count_land, press_judge_land = pressdetect_land(0.1) #閾値0.1
+            print(f'count{press_count_land}\tjudge{press_judge_land}')
+            if press_judge_land == 1:
                 print('land detected')
                 break
     except KeyboardInterrupt:
