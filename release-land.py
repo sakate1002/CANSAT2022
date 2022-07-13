@@ -6,8 +6,8 @@ import time
 
 
 def pressdetect_release(thd_press_release):
-    global presscount_release
-    global pressjudge_release
+    global press_count_release
+    global press_judge_release
     try:
         pressdata = bme280.bme280_read()
         prevpress = pressdata[1]
@@ -17,19 +17,19 @@ def pressdetect_release(thd_press_release):
         deltP = latestpress - prevpress #初めにとった気圧-後にとった気圧
         if 0.0 in pressdata:
             print("bme280error!")
-            pressjudge_release = 2
-            presscount_release = 0
+            press_judge_release = 2
+            press_count_release = 0
         elif deltP > thd_press_release:
-            presscount_release += 1
-            if presscount_release > 2:
-                pressjudge_release = 1
+            press_count_release += 1
+            if press_count_release > 2:
+                press_judge_release = 1
                 print("pressreleasejudge")
         else:
-            presscount_release = 0
+            press_count_release = 0
     except:
-        presscount_release = 0
-        pressjudge_release = 2
-    return presscount_release, pressjudge_release
+        press_count_release = 0
+        press_judge_release = 2
+    return press_count_release, press_judge_release
 
 
 def pressdetect_land(anypress):
