@@ -92,7 +92,7 @@ if __name__ == '__main__':
               datetime.datetime.now(), time.time() - t_start)
     phase = other.phase(log_phase)
     print_xbee(f'Phase:\t{phase}')
-    if phase == 1:
+    if phase == 2:
         t_release_start = time.time()
         i = 1
         try:
