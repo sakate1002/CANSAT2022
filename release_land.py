@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/home/cansat2022/Desktop/CANSAT2022/bme280')
+sys.path.append('/home/cansat2022/CANSAT2022/bme280')
 
 import bme280
 import time
@@ -37,8 +37,8 @@ def pressdetect_land(anypress):
     気圧情報による着地判定用
     引数はどのくらい気圧が変化したら判定にするかの閾値
     """
-    global presscount_land
-    global pressjudge_land
+    global press_count_land
+    global press_judge_land
     try:
         pressdata = bme280.bme280_read()
         Prevpress = pressdata[1]
@@ -48,19 +48,19 @@ def pressdetect_land(anypress):
         deltP = abs(Latestpress - Prevpress) #初めにとった気圧-後にとった気圧
         if 0.0 in pressdata:
             print("bme280error!")
-            presscount_land = 0
-            pressjudge_land = 2
+            press_count_land = 0
+            press_judge_land = 2
         elif deltP < anypress:
-            presscount_land += 1
-            if presscount_land > 4:
-                pressjudge_land = 1
+            press_count_land += 1
+            if press_count_land > 4:
+                press_judge_land = 1
                 print("presslandjudge")
         else:
-            presscount_land = 0
+            press_count_land = 0
     except:
-        presscount_land = 0
-        pressjudge_land = 2
-    return presscount_land, pressjudge_land
+        press_count_land = 0
+        press_judge_land = 2
+    return press_count_land, press_judge_land
 
 
 
