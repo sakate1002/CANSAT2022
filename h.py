@@ -42,6 +42,8 @@ t_delta_release = 1  #時間を伸ばす！エレベーター
 # variable for landing
 thd_press_land = 2
 
+press_judge_release = 0
+
 log_phase = other.filename('/home/cansat2022/CANSAT2022/log/phaseLog', 'txt')
 log_release = other.filename(
     '/home/cansat2022/CANSAT2022/log/releaselog', 'txt')
