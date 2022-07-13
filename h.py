@@ -27,6 +27,7 @@ import release_land
 import land
 import stuck
 from other import print_xbee
+from xbee import str_trans
 
 dateTime = datetime.datetime.now()
 
@@ -103,6 +104,8 @@ if __name__ == '__main__':
                     f'count:{press_count_release}\tjudge{press_judge_release}')
                 other.log(log_release, datetime.datetime.now(), time.time() - t_start,
                           bme280.bme280_read(), press_count_release, press_judge_release)
+                a = bme280.bme280_read()
+                str_trans(a)
                 if press_judge_release == 1:
                     print_xbee('Release\n \n')
                     print("release")
@@ -146,6 +149,7 @@ if __name__ == '__main__':
                     print_xbee('Not Landed\n \n')
                     print("not landed")
                 other.log(log_landing, datetime.datetime.now(), time.time() - t_start, bme280.bme280_read())
+                str_trans(a)
                 i += 1
             else:
                 print_xbee('Landed Timeout')
