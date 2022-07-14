@@ -153,11 +153,13 @@ def mission():
 
 
 if __name__ == "__main__":
-    photoName = picture('photo/photo', 320, 240)
-    motor(-60, 0.4, 1)
-    motor_stop()
-    time.sleep(2.0)
-    photoName = picture('photo/photo', 320, 240)
-    time.sleep(2.0)
-    motor(45, 0.3, 1)
-    motor_stop()
+    
+    for i in range(4):
+        photoName = picture('photo/photo', 320, 240)
+        motor(-60, 0.4, 1)
+        motor_stop()
+        time.sleep(2.0)
+        photoName = picture('photo/photo', 320, 240)
+        time.sleep(2.0)
+        motor(45, 0.3, 1)
+        motor_stop()
