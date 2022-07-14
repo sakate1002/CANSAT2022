@@ -165,7 +165,8 @@ if __name__ == "__main__":
             motor(45, 0.3, 1)
             motor_stop()
             time.sleep(2.0)
-    except Exception as e:
-        exit()       
+    except KeyboardInterrupt:
+		    motor_stop()     
+            
 
         
