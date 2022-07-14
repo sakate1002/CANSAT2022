@@ -137,8 +137,7 @@ if __name__ == '__main__':
             i = 1
             while time.time() - t_land_start <= t_out_land:
                 print_xbee(f"loop_land\t{i}")
-                press_count_land, press_judge_land = release_land.pressdetect_land(
-                    thd_press_land)
+                press_count_land, press_judge_land = release_land.pressdetect_land(thd_press_land)
                 print_xbee(
                     f'count:{press_count_land}\tjudge{press_judge_land}')
                 if press_judge_land == 1:
