@@ -26,7 +26,7 @@ import paradetection
 import paraavoidance
 import other
 import calibration
-import release
+import release_land
 import land
 import motor
 import stuck
@@ -133,11 +133,11 @@ if __name__ == '__main__':
         try:
             while time.time() - t_release_start <= t_out_release:
                 print_xbee(f'loop_release\t {i}')
-                press_count_release, press_judge_release = release.pressdetect_release(
+                press_count_release, press_judge_release = release_land.pressdetect_release(
                     thd_press_release, t_delta_release)
                 print_xbee(
                     f'count:{press_count_release}\tjudge{press_judge_release}')
-                other.log(log_release, datetime.datetime.now(), time.time() - t_start, gps.gps_data_read(),
+                other.log(log_release, datetime.datetime.now(), time.time() - t_start,
                           bme280.bme280_read(), press_count_release, press_judge_release)
                 if press_judge_release == 1:
                     print_xbee('Release\n \n')
@@ -168,21 +168,21 @@ if __name__ == '__main__':
             i = 1
             while time.time() - t_land_start <= t_out_land:
                 print_xbee(f"loop_land\t{i}")
-                press_count_release, press_judge_release = land.pressdetect_land(
+                press_count_land, press_judge_land = release_land.pressdetect_land(
                     thd_press_land)
                 print_xbee(
-                    f'count:{press_count_release}\tjudge{press_judge_release}')
-                if press_judge_release == 1:
+                    f'count:{press_count_land}\tjudge{press_judge_land}')
+                if press_judge_land == 1:
                     print_xbee('Landed\n \n')
                     break
                 else:
                     print_xbee('Not Landed\n \n')
                 other.log(log_landing, datetime.datetime.now(), time.time() - t_start,
-                          gps.gps_data_read(), bme280.bme280_read())
+                           bme280.bme280_read())
                 i += 1
             else:
                 print_xbee('Landed Timeout')
-            other.log(log_landing, datetime.datetime.now(), time.time() - t_start, gps.gps_data_read(), bme280.bme280_read(),
+            other.log(log_landing, datetime.datetime.now(), time.time() - t_start,  bme280.bme280_read(),
                       'Land judge finished')
             print_xbee('######-----Landed-----######\n \n')
     except Exception as e:

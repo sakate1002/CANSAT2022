@@ -66,9 +66,13 @@ def goal_detection(imgpath: str, G_thd: float):
         path_detection = other.filename(
             '/home/cansat2022/CANSAT2022/detected/Detected-', 'jpg')
 
-        red_min = np.array([0, 150, 70], np.uint8) #赤色検知最小値
-        red_max = np.array([15, 255, 255], np.uint8) #赤色検知最大値
+        red_min = np.array([120, 120, 120], np.uint8) #赤色検知最小値
+        red_max = np.array([255, 255, 255], np.uint8) #赤色検知最大値
         mask = cv2.inRange(img_hsv, red_min, red_max)
+
+        #red_min = np.array([0, 150, 70], np.uint8) #赤色検知最小値
+        #red_max = np.array([15, 255, 255], np.uint8) #赤色検知最大値
+        #mask = cv2.inRange(img_hsv, red_min, red_max)
 
         #red_min = np.array([150, 64, 0], np.uint8) #赤色検知最小値
         #red_max = np.array([179, 255, 255], np.uint8) #赤色検知最大値
@@ -194,7 +198,7 @@ def image_guided_driving(log_photorunning, G_thd, magx_off, magy_off, lon2, lat2
 
             if goalflug == -1 or goalflug == 1000:
                 print_xbee('Nogoal detected')
-                motor.move(50, 50, 0.1)
+                motor.move(30, 30, 0.1)
                 auto_count += 1
             elif goalarea <= area_long:
                 auto_count = 0
@@ -263,8 +267,8 @@ def image_guided_driving(log_photorunning, G_thd, magx_off, magy_off, lon2, lat2
 if __name__ == "__main__":
     try:
         # Initialize
-        lat2 = 35.9237030
-        lon2 = 139.9116424
+        lat2 = 35.9192621
+        lon2 = 139.9085065
         G_thd = 60
         log_photorunning = '/home/cansat2022/CANSAT2022/log/photorunning_practice.txt'
         motor.setup()

@@ -145,19 +145,28 @@ def picture(path, width=320, height=240):
 
 def mission():
     photoName = picture('photo/photo', 320, 240)
-    motor(-30, 0.5, 1)
+    motor(-60, 0.4, 1)
     motor_stop()
     photoName = picture('photo/photo', 320, 240)
-    motor(30, 0.5, 1)
+    motor(45, 0.3, 1)
     motor_stop()
 
 
 if __name__ == "__main__":
-    photoName = picture('photo/photo', 320, 240)
-    motor(-30, 0.5, 1)
-    motor_stop()
-    time.sleep(2.0)
-    photoName = picture('photo/photo', 320, 240)
-    time.sleep(2.0)
-    motor(30, 0.5, 1)
-    motor_stop()
+    try:
+        for i in range(4):
+            time.sleep(2.0)
+            #photoName = picture('photo/photo', 320, 240)
+            motor(-50, 0.4, 1)
+            motor_stop()
+            time.sleep(2.0)
+            #photoName = picture('photo/photo', 320, 240)
+            time.sleep(2.0)
+            motor(35, 0.3, 1)
+            motor_stop()
+            time.sleep(2.0)
+    except KeyboardInterrupt:
+		    motor_stop()     
+            
+
+        
