@@ -32,6 +32,8 @@ import motor
 import stuck
 import escape
 from other import print_xbee
+import gpsrun0
+import photo_running
 
 dateTime = datetime.datetime.now()
 
@@ -45,7 +47,7 @@ thd_press_release = 0.3
 t_delta_release = 1  #時間を伸ばす！エレベーター
 
 # variable for landing
-thd_press_land = 0.15
+thd_press_land = 0.1
 
 # variable for calibration
 strength_l_cal = 40
@@ -80,6 +82,10 @@ log_paraavoidance = other.filename(
 log_magrunning = other.filename(
     '/home/cansat2022/CANSAT2022/log/MagrunningLog', 'txt')
 path_paradete = '/home/cansat2022/CANSAT2022/photo_paradete/paradete'
+log_gpsrunning = other.filename(
+    '/home/cansat2022/CANSAT2022/log/gpsrunningLog', 'txt')
+log_photorunning = other.filename(
+    '/home/cansat2022/CANSAT2022/log/photorunning', 'txt')
 
 def setup():
     global phase
@@ -277,4 +283,34 @@ if __name__ == '__main__':
     #     print_xbee('#####-----Error(paraavo)-----#####\n \n')
     #######-----------------------------------------------------------########
 
-    
+    #######--------------------------gps--------------------------#######
+
+    print_xbee('#####-----gps run start-----#####')
+    other.log(log_phase, '2', 'GPSrun phase start',
+              datetime.datetime.now(), time.time() - t_start)
+    phase = other.phase(log_phase)
+    print_xbee(f'Phase:\t{phase}')
+    if phase == 7:
+        gpsrun0.drive(lon2, lat2, th_distance, t_adj_gps, log_gpsrunning)
+    # except Exception as e:
+    #     tb = sys.exc_info()[2]
+    #     print_xbee("message:{0}".format(e.with_traceback(tb)))
+    #     print_xbee('#####-----Error(gpsrunning)-----#####')
+    #     print_xbee('#####-----Error(gpsrunning)-----#####\n \n')
+
+    ######------------------photo running---------------------##########
+    try:
+        print_xbee('#####-----photo run start-----#####')
+        other.log(log_phase, '3', 'image run phase start',
+                  datetime.datetime.now(), time.time() - t_start)
+        phase = other.phase(log_phase)
+        print_xbee(f'Phase:\t{phase}')
+        if phase == 8:
+            magx_off, magy_off = calibration.cal(40, -40, 60)
+            photo_running.image_guided_driving(
+                log_photorunning, G_thd, magx_off, magy_off, lon2, lat2, th_distance, t_adj_gps, gpsrun=True)
+    except Exception as e:
+        tb = sys.exc_info()[2]
+        print_xbee("message:{0}".format(e.with_traceback(tb)))
+        print_xbee('#####-----Error(Photo running)-----#####')
+        print_xbee('#####-----Error(Photo running)-----#####\n \n')
