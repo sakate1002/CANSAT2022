@@ -145,10 +145,10 @@ def picture(path, width=320, height=240):
 
 def mission():
     photoName = picture('photo/photo', 320, 240)
-    motor(-50, 0.4, 1)
+    motor(-50, 0.5, 1)
     motor_stop()
     photoName = picture('photo/photo', 320, 240)
-    motor(35, 0.3, 1)
+    motor(50, 0.5, 1)
     motor_stop()
 
 
