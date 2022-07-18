@@ -103,9 +103,12 @@ def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/CANSAT2
     GPS走行の関数
     統合する場合はprintをXbee.str_transに変更，other.saveLogのコメントアウトを外す
     """
+
+    global strength_l
+    global strength_r
     direction = calibration.calculate_direction(lon2, lat2)
     goal_distance_old = direction['distance']
-    mission_distance = int(goal_distance_old) * 0.7
+    mission_distance = int(goal_distance_old) * 0.5
     goal_distance = direction['distance']
     
     while goal_distance >= thd_distance:
@@ -115,7 +118,7 @@ def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/CANSAT2
         goal_distance = direction['distance']
         mission_count = 0
         if mission_count < 1:
-            if (mission_distance - 10) < mission_distance and mission_distance < (mission_distance + 10):
+            if (mission_distance - 3) < mission_distance and mission_distance < (mission_distance + 3):
                 mission.mission()
                 mission_count += 1
         
