@@ -127,47 +127,14 @@ if __name__ == '__main__':
         print_xbee('#####-----Error(setup)-----#####\n \n')
     #######-----------------------------------------------------------########
 
-    #######--------------------------Release--------------------------#######
-    print_xbee('#####-----Release Phase start-----#####')
-    other.log(log_phase, "2", "Release Phase Started",
-              datetime.datetime.now(), time.time() - t_start)
-    phase = other.phase(log_phase)
-    print_xbee(f'Phase:\t{phase}')
-    if phase == 2:
-        t_release_start = time.time()
-        i = 1
-        try:
-            while time.time() - t_release_start <= t_out_release:
-                print_xbee(f'loop_release\t {i}')
-                press_count_release, press_judge_release = release_land.pressdetect_release(
-                    thd_press_release, t_delta_release)
-                print_xbee(
-                    f'count:{press_count_release}\tjudge{press_judge_release}')
-                other.log(log_release, datetime.datetime.now(), time.time() - t_start,
-                          bme280.bme280_read(), press_count_release, press_judge_release)
-                if press_judge_release == 1:
-                    print_xbee('Release\n \n')
-                    break
-                else:
-                    print_xbee('Not Release\n \n')
-                i += 1
-            else:
-                print_xbee('##--release timeout--##')
-            print_xbee("######-----Released-----##### \n \n")
-        except Exception as e:
-            tb = sys.exc_info()[2]
-            print_xbee("message:{0}".format(e.with_traceback(tb)))
-            print_xbee('#####-----Error(Release)-----#####')
-            print_xbee('#####-----Error(Release)-----#####\n \n')
-
     #######--------------------------Landing--------------------------#######
     try:
         print_xbee('#####-----Landing phase start-----#####')
-        other.log(log_phase, '3', 'Landing phase',
+        other.log(log_phase, '2', 'Landing phase',
                   datetime.datetime.now(), time.time() - t_start)
         phase = other.phase(log_phase)
         print_xbee(f'Phase:\t{phase}')
-        if phase == 3:
+        if phase == 2:
             print_xbee(
                 f'Landing Judgement Program Start\t{time.time() - t_start}')
             t_land_start = time.time()
@@ -201,27 +168,28 @@ if __name__ == '__main__':
     #######--------------------------Photo Test----------------------#######
 
     print_xbee('#####-----Photo test start####')
-    other.log(log_phase, '4', 'Phototest phase start',
+    other.log(log_phase, '3', 'Phototest phase start',
               datetime.datetime.now(), time.time() - t_start)
     phase = other.phase(log_phase)
     print_xbee(f'Phase:\t{phase}')
-    if phase == 4:
+    if phase == 3:
         other.log(log_phototest, datetime.datetime.now(), time.time() - t_start,
                   gps.gps_data_read(), "Phototest Start")
         take.picture()
+        time.sleep(5.0)
         other.log(log_phototest, datetime.datetime.now(), time.time() - t_start,
                   gps.gps_data_read(), "Phototest Finished")
     print_xbee('########-----Photed-----#######\n \n')
     #######--------------------------Escape--------------------------#######
 
     print_xbee('#####-----Melting phase start#####')
-    other.log(log_phase, '5', 'Melting phase start',
+    other.log(log_phase, '4', 'Melting phase start',
               datetime.datetime.now(), time.time() - t_start)
     phase = other.phase(log_phase)
     print_xbee(f'Phase:\t{phase}')
-    if phase == 5:
+    if phase == 4:
         # 落下試験用の安全対策（落下しないときにXbeeでプログラム終了)
-        while time.time() - t_release_start <= t_out_release_safe:
+        while time.time() - t_land_start <= t_out_release_safe:
             xbee.str_trans('continue? y/n \t')
             if xbee.str_receive() == 'y':
                 break
@@ -244,11 +212,11 @@ if __name__ == '__main__':
     #######--------------------------Center Motor Check--------------------------#######
 
     print_xbee('#####-----Cmotor phase start#####')
-    other.log(log_phase, '6', 'Cmotor phase start',
+    other.log(log_phase, '5', 'Cmotor phase start',
               datetime.datetime.now(), time.time() - t_start)
     phase = other.phase(log_phase)
     print_xbee(f'Phase:\t{phase}')
-    if phase == 6:
+    if phase == 5:
         other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
                   gps.gps_data_read(), "Cmotor Start")
         mission.mission()
@@ -286,7 +254,7 @@ if __name__ == '__main__':
     #######--------------------------gps--------------------------#######
 
     print_xbee('#####-----gps run start-----#####')
-    other.log(log_phase, '2', 'GPSrun phase start',
+    other.log(log_phase, '7', 'GPSrun phase start',
               datetime.datetime.now(), time.time() - t_start)
     phase = other.phase(log_phase)
     print_xbee(f'Phase:\t{phase}')
@@ -301,7 +269,7 @@ if __name__ == '__main__':
     ######------------------photo running---------------------##########
     try:
         print_xbee('#####-----photo run start-----#####')
-        other.log(log_phase, '3', 'image run phase start',
+        other.log(log_phase, '8', 'image run phase start',
                   datetime.datetime.now(), time.time() - t_start)
         phase = other.phase(log_phase)
         print_xbee(f'Phase:\t{phase}')
