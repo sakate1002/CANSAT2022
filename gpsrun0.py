@@ -219,4 +219,4 @@ if __name__ == '__main__':
     bmx055.bmx055_setup()
     motor.setup()
 
-    drive(lon2, lat2, thd_distance=5, t_adj_gps=60)
+    drive(lon2, lat2, thd_distance=10, t_adj_gps=60)
