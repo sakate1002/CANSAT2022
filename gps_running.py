@@ -37,23 +37,6 @@ def adjust_direction(theta, magx_off, magy_off, lon2, lat2):
     """
     方向調整
     """
-
-    # print('ゴールとの角度theta = ' + str(theta) + '---回転調整開始！')
-    # stuck.ue_jug()
-    # an = 30
-    # if 45 < theta <= 180 :
-    #     motor.motor_continue(an, -an)
-    # elif -180 < theta < -45:
-    #     motor.motor_continue(-an, an)
-    # elif 0 <= theta <= 45:
-    #     motor.deceleration(an, -an)
-    # elif -45 <= theta <= 0:
-    #     motor.motor_continue(-an, an)
-
-    # theta = angle_goal(magx_off, magy_off, lon2, lat2)
-    # print('Calculated angle_relative: {theta}')
-    # time.sleep(0.03)
-
     stuck_count = 1 #調整阪手
     t_small = 0.1 #調整阪手
     t_big = 0.2 #調整阪手
@@ -137,7 +120,7 @@ def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/CANSAT2
 
         t_cal = time.time()
         lat_old, lon_old = gps.location()
-        while time.time() - t_cal <= t_adj_gps:
+        while time.time() - t_cal <= t_adj_gps: #ここの秒数がキャリブレーションを次に行うまでの時間になる
             lat1, lon1 = gps.location()
             lat_new, lon_new = lat1, lon1
             direction = gps_navigate.vincenty_inverse(lat1, lon1, lat2, lon2)
@@ -147,7 +130,7 @@ def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/CANSAT2
 
             if t_stuck_count % 8 == 0:
                 ##↑何秒おきにスタックジャッジするかを決める##
-                if stuck.stuck_jug(lat_old, lon_old, lat_new, lon_new, 4): #スタックの基準（閾値は調整）サカイェ
+                if stuck.stuck_jug(lat_old, lon_old, lat_new, lon_new, 2): #スタックの基準（閾値は調整）サカイェ
                     pass
                 else:
                     stuck.stuck_avoid()
@@ -169,27 +152,7 @@ def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/CANSAT2
                     else:
                         angle_relative = angle_relative if angle_relative >= -180 else angle_relative + 360
                     theta = angle_relative
-                    adj_r = 0
-                    # if theta >= 0:
-                    #     if theta <= 8:
-                    #         adj = 0
-                    #     elif theta <= 15:
-                    #         adj = 5
-                    #     elif theta <= 90:
-                    #         adj = 20
-                    #         adj_r = 5
-                    #     else:
-                    #         adj = 30
-                    #         adj_r = 5
-                    # else:
-                    #     if theta >= - 8:
-                    #         adj = 0
-                    #     elif theta >= -15:
-                    #         adj = -10
-                    #     elif theta >= -90:
-                    #         adj = -20
-                    #     else:
-                    #         adj = -30
+                    
                     if theta >= 0:
                         if theta <= 15:
                             adj = 0
