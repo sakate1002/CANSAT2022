@@ -106,6 +106,7 @@ def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/CANSAT2
     direction = calibration.calculate_direction(lon2, lat2)
     goal_distance_old = direction['distance']
     mission_distance = int(goal_distance_old) * 0.7
+    goal_distance = direction['distance']
     
     while goal_distance >= thd_distance:
 
