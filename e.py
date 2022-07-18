@@ -116,7 +116,7 @@ if __name__ == '__main__':
             setup()
             print_xbee('#####-----Setup Phase ended-----##### \n \n')
             print_xbee('####----wait----#### ')
-            t_wait = 150
+            t_wait = 5
             for i in range(t_wait):
                 print_xbee(t_wait-i)
                 time.sleep(1)
