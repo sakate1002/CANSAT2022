@@ -1,9 +1,9 @@
 import motor
-import melt
+import melt2
 import stuck
 
 def escape(t_melt=3):
-    melt.down(t_melt)
+    melt2.down(t_melt)
     stuck.ue_jug()
 
 if __name__ == '__main__':
