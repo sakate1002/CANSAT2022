@@ -21,7 +21,7 @@ import xbee
 import bmx055
 import bme280
 import gps
-import melt
+import melt2
 import paradetection
 import paraavoidance
 import other
