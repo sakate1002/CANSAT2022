@@ -189,13 +189,13 @@ if __name__ == '__main__':
     print_xbee(f'Phase:\t{phase}')
     if phase == 4:
         # 落下試験用の安全対策（落下しないときにXbeeでプログラム終了)
-        while time.time() - t_land_start <= t_out_release_safe:
-            xbee.str_trans('continue? y/n \t')
-            if xbee.str_receive() == 'y':
-                break
-            elif xbee.str_receive() == 'n':
-                xbee.str_trans('Interrupted for safety')
-                exit()
+        #while time.time() - t_land_start <= t_out_release_safe:
+            #xbee.str_trans('continue? y/n \t')
+            #if xbee.str_receive() == 'y':
+                #break
+            #elif xbee.str_receive() == 'n':
+                #xbee.str_trans('Interrupted for safety')
+                #exit()
         other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
                   gps.gps_data_read(), "Melting Start")
         escape.escape()
