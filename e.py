@@ -58,11 +58,11 @@ number_data = 30
 # variable for GPSrun
 # lat2 = 35.918548
 # lon2 = 139.908896
-lat2 = 35.412923
-lon2 = 138.592713
+lat2 = 35.9240157
+lon2 = 139.9112665
 
-th_distance = 6.5
-t_adj_gps = 180
+th_distance = 5
+t_adj_gps = 20
 
 # variable for photorun
 G_thd = 50
