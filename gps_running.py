@@ -92,15 +92,15 @@ def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/CANSAT2
     goal_distance_old = direction['distance']
     mission_distance = int(goal_distance_old) * 0.5
     goal_distance = direction['distance']
+    mission_count = 0
     
     while goal_distance >= thd_distance:
 
         t_stuck_count = 1
         stuck.ue_jug()
         goal_distance = direction['distance']
-        mission_count = 0
         if mission_count < 1:
-            if (mission_distance - 10) < goal_distance and goal_distance < (mission_distance + 10):
+            if (mission_distance - 7) < goal_distance and goal_distance < (mission_distance + 7):
                 adjust_direction(theta, magx_off, magy_off, lon2, lat2)
                 mission.mission()
                 mission_count += 1
@@ -195,4 +195,4 @@ if __name__ == '__main__':
     bmx055.bmx055_setup()
     motor.setup()
 
-    drive(lon2, lat2, thd_distance=5, t_adj_gps=20) 
+    drive(lon2, lat2, thd_distance=5, t_adj_gps=30) 
