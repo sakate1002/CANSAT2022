@@ -32,7 +32,7 @@ import motor
 import stuck
 import escape
 from other import print_xbee
-import gpsrun0
+import gps_running
 import photo_running
 
 dateTime = datetime.datetime.now()
@@ -259,7 +259,7 @@ if __name__ == '__main__':
     phase = other.phase(log_phase)
     print_xbee(f'Phase:\t{phase}')
     if phase == 7:
-        gpsrun0.drive(lon2, lat2, th_distance, t_adj_gps, log_gpsrunning)
+        gps_running.drive(lon2, lat2, th_distance, t_adj_gps, log_gpsrunning)
     # except Exception as e:
     #     tb = sys.exc_info()[2]
     #     print_xbee("message:{0}".format(e.with_traceback(tb)))
