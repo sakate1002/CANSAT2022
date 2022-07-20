@@ -175,7 +175,7 @@ if __name__ == '__main__':
     if phase == 3:
         other.log(log_phototest, datetime.datetime.now(), time.time() - t_start,
                   gps.gps_data_read(), "Phototest Start")
-        take.picture()
+        take.picture('photo/photo', 320, 240)
         time.sleep(5.0)
         other.log(log_phototest, datetime.datetime.now(), time.time() - t_start,
                   gps.gps_data_read(), "Phototest Finished")
