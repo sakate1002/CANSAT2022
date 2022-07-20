@@ -221,7 +221,7 @@ def image_guided_driving(log_photorunning, G_thd, magx_off, magy_off, lon2, lat2
                     motor.move(25, 25, 1)
                 else:
                     print_xbee('Go straight middle')
-                    adjustment_mag(40, 0.8, magx_off, magy_off)
+                    adjustment_mag(40, 2, magx_off, magy_off)
             elif goalarea <= area_short:
                 auto_count = 0
                 if -100 <= gap and gap <= -65:
