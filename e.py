@@ -51,7 +51,7 @@ thd_press_land = 0.1
 
 # variable for calibration
 strength_l_cal = 40
-strength_r_cal = -40
+strength_r_cal = 40
 t_rotation_cal = 0.2
 number_data = 30
 
@@ -274,7 +274,7 @@ if __name__ == '__main__':
         phase = other.phase(log_phase)
         print_xbee(f'Phase:\t{phase}')
         if phase == 7:
-            magx_off, magy_off = calibration.cal(40, -40, 60)
+            magx_off, magy_off = calibration.cal(40, 40, 60)
             photo_running.image_guided_driving(
                 log_photorunning, G_thd, magx_off, magy_off, lon2, lat2, th_distance, t_adj_gps, gpsrun=True)
     except Exception as e:
