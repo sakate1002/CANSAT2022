@@ -100,7 +100,7 @@ def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/CANSAT2
         goal_distance = direction['distance']
         mission_count = 0
         if mission_count < 1:
-            if (mission_distance - 3) < goal_distance and goal_distance < (mission_distance + 3):
+            if (mission_distance - 10) < goal_distance and goal_distance < (mission_distance + 10):
                 adjust_direction(theta, magx_off, magy_off, lon2, lat2)
                 mission.mission()
                 mission_count += 1
