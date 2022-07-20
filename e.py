@@ -182,26 +182,26 @@ if __name__ == '__main__':
     print_xbee('########-----Photed-----#######\n \n')
     #######--------------------------Escape--------------------------#######
 
-    print_xbee('#####-----Melting phase start#####')
-    other.log(log_phase, '4', 'Melting phase start',
-              datetime.datetime.now(), time.time() - t_start)
-    phase = other.phase(log_phase)
-    print_xbee(f'Phase:\t{phase}')
-    if phase == 4:
+    #print_xbee('#####-----Melting phase start#####')
+    #other.log(log_phase, '4', 'Melting phase start',
+              #datetime.datetime.now(), time.time() - t_start)
+    #phase = other.phase(log_phase)
+    #print_xbee(f'Phase:\t{phase}')
+    #if phase == 4:
         # 落下試験用の安全対策（落下しないときにXbeeでプログラム終了)
-        while time.time() - t_land_start <= t_out_release_safe:
-            xbee.str_trans('continue? y/n \t')
-            if xbee.str_receive() == 'y':
-                break
-            elif xbee.str_receive() == 'n':
-                xbee.str_trans('Interrupted for safety')
-                exit()
-        other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
-                  gps.gps_data_read(), "Melting Start")
-        escape.escape()
-        other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
-                  gps.gps_data_read(), "Melting Finished")
-    print_xbee('########-----Melted-----#######\n \n')
+        #while time.time() - t_land_start <= t_out_release_safe:
+            #xbee.str_trans('continue? y/n \t')
+            #if xbee.str_receive() == 'y':
+                #break
+            #elif xbee.str_receive() == 'n':
+                #xbee.str_trans('Interrupted for safety')
+                #exit()
+        #other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
+                  #gps.gps_data_read(), "Melting Start")
+        #escape.escape()
+        #other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
+                  #gps.gps_data_read(), "Melting Finished")
+    #print_xbee('########-----Melted-----#######\n \n')
     # except Exception as e:
     #     tb = sys.exc_info()[2]
     #     print_xbee("message:{0}".format(e.with_traceback(tb)))
@@ -212,11 +212,11 @@ if __name__ == '__main__':
     #######--------------------------Center Motor Check--------------------------#######
 
     print_xbee('#####-----Cmotor phase start#####')
-    other.log(log_phase, '5', 'Cmotor phase start',
+    other.log(log_phase, '4', 'Cmotor phase start',
               datetime.datetime.now(), time.time() - t_start)
     phase = other.phase(log_phase)
     print_xbee(f'Phase:\t{phase}')
-    if phase == 5:
+    if phase == 4:
         other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
                   gps.gps_data_read(), "Cmotor Start")
         mission.mission()
@@ -227,12 +227,12 @@ if __name__ == '__main__':
     #######--------------------------Paraavo--------------------------#######
 
     print_xbee('#####-----Para avoid start-----#####')
-    other.log(log_phase, '6', 'Paraavo phase start',
+    other.log(log_phase, '5', 'Paraavo phase start',
               datetime.datetime.now(), time.time() - t_start)
     phase = other.phase(log_phase)
     print_xbee(f'Phase:\t{phase}')
     count_paraavo = 0
-    if phase == 6:
+    if phase == 5:
         while count_paraavo < 3:
             flug, area, gap, photoname = paradetection.para_detection(
                 path_paradete, 320, 240, 200, 10, 120, 1)
@@ -254,11 +254,11 @@ if __name__ == '__main__':
     #######--------------------------gps--------------------------#######
 
     print_xbee('#####-----gps run start-----#####')
-    other.log(log_phase, '7', 'GPSrun phase start',
+    other.log(log_phase, '6', 'GPSrun phase start',
               datetime.datetime.now(), time.time() - t_start)
     phase = other.phase(log_phase)
     print_xbee(f'Phase:\t{phase}')
-    if phase == 7:
+    if phase == 6:
         gps_running.drive(lon2, lat2, th_distance, t_adj_gps, log_gpsrunning)
     # except Exception as e:
     #     tb = sys.exc_info()[2]
@@ -269,11 +269,11 @@ if __name__ == '__main__':
     ######------------------photo running---------------------##########
     try:
         print_xbee('#####-----photo run start-----#####')
-        other.log(log_phase, '8', 'image run phase start',
+        other.log(log_phase, '7', 'image run phase start',
                   datetime.datetime.now(), time.time() - t_start)
         phase = other.phase(log_phase)
         print_xbee(f'Phase:\t{phase}')
-        if phase == 8:
+        if phase == 7:
             magx_off, magy_off = calibration.cal(40, -40, 60)
             photo_running.image_guided_driving(
                 log_photorunning, G_thd, magx_off, magy_off, lon2, lat2, th_distance, t_adj_gps, gpsrun=True)
