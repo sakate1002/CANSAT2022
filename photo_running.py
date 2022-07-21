@@ -178,6 +178,8 @@ def image_guided_driving(log_photorunning, G_thd, magx_off, magy_off, lon2, lat2
         count_short_r = 0
         adj_short = 0
         auto_count = 0
+        nogoal_count = 0
+        chosei = 0
         while 1:
             stuck.ue_jug()
             path_photo = '/home/cansat2022/CANSAT2022/photo_imageguide/ImageGuide-'
@@ -195,10 +197,15 @@ def image_guided_driving(log_photorunning, G_thd, magx_off, magy_off, lon2, lat2
                 print(goalarea)
                 adjustment_mag(40, 1.5, magx_off, magy_off)
                 auto_count = 0
-
+                
             if goalflug == -1 or goalflug == 1000:
                 print_xbee('Nogoal detected')
-                motor.move(30, 30, 0.1)
+                nogoal_count =+ 1
+                if nogoal_count % 4 == 0:
+                    chosei =+ 3
+                    motor.motor_move(30 + chosei, 30 + chosei, 0.1)
+                else:
+                    motor.motor_move(30, 30, 0.1)
                 auto_count += 1
             elif goalarea <= area_long:
                 auto_count = 0
