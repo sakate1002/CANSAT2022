@@ -167,27 +167,27 @@ if __name__ == '__main__':
 
     #######--------------------------Photo Test----------------------#######
 
-    print_xbee('#####-----Photo test start####')
-    other.log(log_phase, '3', 'Phototest phase start',
+    #print_xbee('#####-----Photo test start####')
+    #other.log(log_phase, '3', 'Phototest phase start',
+              #datetime.datetime.now(), time.time() - t_start)
+    #phase = other.phase(log_phase)
+    #print_xbee(f'Phase:\t{phase}')
+    #if phase == 3:
+        #other.log(log_phototest, datetime.datetime.now(), time.time() - t_start,
+                  #gps.gps_data_read(), "Phototest Start")
+        #take.picture('photo/photo', 320, 240)
+        #time.sleep(5.0)
+        #other.log(log_phototest, datetime.datetime.now(), time.time() - t_start,
+                  #gps.gps_data_read(), "Phototest Finished")
+    #print_xbee('########-----Photed-----#######\n \n')
+    #######--------------------------Escape--------------------------#######
+
+    print_xbee('#####-----Melting phase start#####')
+    other.log(log_phase, '3', 'Melting phase start',
               datetime.datetime.now(), time.time() - t_start)
     phase = other.phase(log_phase)
     print_xbee(f'Phase:\t{phase}')
     if phase == 3:
-        other.log(log_phototest, datetime.datetime.now(), time.time() - t_start,
-                  gps.gps_data_read(), "Phototest Start")
-        take.picture('photo/photo', 320, 240)
-        time.sleep(5.0)
-        other.log(log_phototest, datetime.datetime.now(), time.time() - t_start,
-                  gps.gps_data_read(), "Phototest Finished")
-    print_xbee('########-----Photed-----#######\n \n')
-    #######--------------------------Escape--------------------------#######
-
-    print_xbee('#####-----Melting phase start#####')
-    other.log(log_phase, '4', 'Melting phase start',
-              datetime.datetime.now(), time.time() - t_start)
-    phase = other.phase(log_phase)
-    print_xbee(f'Phase:\t{phase}')
-    if phase == 4:
         # 落下試験用の安全対策（落下しないときにXbeeでプログラム終了)
         while time.time() - t_land_start <= t_out_release_safe:
             xbee.str_trans('continue? y/n \t')
