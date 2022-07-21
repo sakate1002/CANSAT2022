@@ -8,8 +8,8 @@ import numpy as np
 import sensor.axis.bmx055 as bmx055
 import other
 from sensor.axis.bmx055 import bmx055_setup
-import SensorModule.gps.gps as gps
-import SensorModule.gps.gps_navigate as gps_navigate
+import sensor.gps.gps as gps
+import sensor.gps.gps_navigate as gps_navigate
 from other import print_xbee
 import motor
 import stuck

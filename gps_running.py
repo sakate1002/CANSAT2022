@@ -2,12 +2,12 @@ import datetime
 import time
 
 import mission
-import SensorModule.gps.gps_navigate as gps_navigate
-import SensorModule.gps.gps as gps
+import sensor.gps.gps_navigate as gps_navigate
+import sensor.gps.gps as gps
 import sensor.axis.bmx055 as bmx055
 import motor #motor.move(l,r,t)
-import motor3
-import xbee
+import sensor.motor.motor3
+import sensor.communication.xbee
 import calibration
 import stuck
 import other
