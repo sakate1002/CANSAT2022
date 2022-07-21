@@ -3,9 +3,9 @@ import cv2
 import sys
 import numpy as np
 
-import take
+import sensor.camera.take as take
 import xbee
-import bmx055
+import sensor.axis.bmx055 as bmx055
 from other import print_xbee
 import motor
 import stuck

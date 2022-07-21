@@ -2,10 +2,10 @@ import time
 import datetime
 import sys
 
-import bmx055
+import sensor.axis.bmx055 as bmx055
 import xbee
-import gps
-import bme280
+import SensorModule.gps.gps as gps
+import sensor.environment.bme280 as bme280
 from other import print_xbee
 import release_land
 import paradetection

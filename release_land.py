@@ -1,7 +1,7 @@
 import sys
 sys.path.append('/home/cansat2022/CANSAT2022/bme280')
 
-import bme280
+import sensor.environment.bme280 as bme280
 import time
 
 

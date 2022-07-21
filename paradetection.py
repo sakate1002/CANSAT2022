@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-import take
+import sensor.camera.take as take
 
 
 def get_center(contour):

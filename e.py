@@ -14,13 +14,13 @@ sys.path.append('/home/cansat2022/CANSAT2022/calibration')
 
 import mission
 import time
-import take
+import sensor.camera.take as take
 import datetime
 import pigpio
 import xbee
-import bmx055
-import bme280
-import gps
+import sensor.axis.bmx055 as bmx055
+import sensor.environment.bme280 as bme280
+import SensorModule.gps.gps as gps
 import melt2
 import paradetection
 import paraavoidance

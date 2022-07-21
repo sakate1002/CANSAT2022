@@ -1,5 +1,5 @@
 import time
-import bme280
+import sensor.environment.bme280 as bme280
 from other import print_xbee
 
 def pressdetect_land(thd_press_land):

@@ -5,11 +5,11 @@ import traceback
 import datetime
 import numpy as np
 
-import bmx055
+import sensor.axis.bmx055 as bmx055
 import other
-from bmx055 import bmx055_setup
-import gps
-import gps_navigate
+from sensor.axis.bmx055 import bmx055_setup
+import SensorModule.gps.gps as gps
+import SensorModule.gps.gps_navigate as gps_navigate
 from other import print_xbee
 import motor
 import stuck
