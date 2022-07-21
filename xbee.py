@@ -19,7 +19,7 @@ def image_to_byte(img1):
 def img_trans(string): #ボーレートの違いについて57600
     port = serial.Serial(
         port="/dev/ttyAMA0",
-        baudrate=57600,
+        baudrate=9600,
         parity=serial.PARITY_NONE,
         stopbits=serial.STOPBITS_ONE,
         bytesize=serial.EIGHTBITS,
@@ -51,7 +51,7 @@ def str_trans(string): #ボーレートの違いについて9600
 def str_receive(): #ボーレートの違いについて57600
     ser = serial.Serial(
         port="/dev/ttyAMA0",
-        baudrate=57600,
+        baudrate=9600,
         parity=serial.PARITY_NONE,
         stopbits=serial.STOPBITS_ONE,
         bytesize=serial.EIGHTBITS,

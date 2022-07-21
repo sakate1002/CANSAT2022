@@ -32,7 +32,7 @@ import motor
 import stuck
 import escape
 from other import print_xbee
-import gpsrun0
+import gps_running
 import photo_running
 
 dateTime = datetime.datetime.now()
@@ -51,18 +51,18 @@ thd_press_land = 0.1
 
 # variable for calibration
 strength_l_cal = 40
-strength_r_cal = -40
+strength_r_cal = 40
 t_rotation_cal = 0.2
 number_data = 30
 
 # variable for GPSrun
 # lat2 = 35.918548
 # lon2 = 139.908896
-lat2 = 35.412923
-lon2 = 138.592713
+lat2 = 35.9237070
+lon2 = 139.9134495
 
-th_distance = 6.5
-t_adj_gps = 180
+th_distance = 5
+t_adj_gps = 30
 
 # variable for photorun
 G_thd = 50
@@ -175,7 +175,7 @@ if __name__ == '__main__':
     if phase == 3:
         other.log(log_phototest, datetime.datetime.now(), time.time() - t_start,
                   gps.gps_data_read(), "Phototest Start")
-        take.picture()
+        take.picture('photo/photo', 320, 240)
         time.sleep(5.0)
         other.log(log_phototest, datetime.datetime.now(), time.time() - t_start,
                   gps.gps_data_read(), "Phototest Finished")
@@ -189,13 +189,13 @@ if __name__ == '__main__':
     print_xbee(f'Phase:\t{phase}')
     if phase == 4:
         # 落下試験用の安全対策（落下しないときにXbeeでプログラム終了)
-        while time.time() - t_land_start <= t_out_release_safe:
-            xbee.str_trans('continue? y/n \t')
-            if xbee.str_receive() == 'y':
-                break
-            elif xbee.str_receive() == 'n':
-                xbee.str_trans('Interrupted for safety')
-                exit()
+        #while time.time() - t_land_start <= t_out_release_safe:
+            #xbee.str_trans('continue? y/n \t')
+            #if xbee.str_receive() == 'y':
+                #break
+            #elif xbee.str_receive() == 'n':
+                #xbee.str_trans('Interrupted for safety')
+                #exit()
         other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
                   gps.gps_data_read(), "Melting Start")
         escape.escape()
@@ -259,7 +259,7 @@ if __name__ == '__main__':
     phase = other.phase(log_phase)
     print_xbee(f'Phase:\t{phase}')
     if phase == 7:
-        gpsrun0.drive(lon2, lat2, th_distance, t_adj_gps, log_gpsrunning)
+        gps_running.drive(lon2, lat2, th_distance, t_adj_gps, log_gpsrunning)
     # except Exception as e:
     #     tb = sys.exc_info()[2]
     #     print_xbee("message:{0}".format(e.with_traceback(tb)))
@@ -274,7 +274,7 @@ if __name__ == '__main__':
         phase = other.phase(log_phase)
         print_xbee(f'Phase:\t{phase}')
         if phase == 8:
-            magx_off, magy_off = calibration.cal(40, -40, 60)
+            magx_off, magy_off = calibration.cal(40, 40, 60)
             photo_running.image_guided_driving(
                 log_photorunning, G_thd, magx_off, magy_off, lon2, lat2, th_distance, t_adj_gps, gpsrun=True)
     except Exception as e:

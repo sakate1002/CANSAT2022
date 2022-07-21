@@ -92,15 +92,15 @@ def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/CANSAT2
     goal_distance_old = direction['distance']
     mission_distance = int(goal_distance_old) * 0.5
     goal_distance = direction['distance']
+    mission_count = 0
     
     while goal_distance >= thd_distance:
 
         t_stuck_count = 1
         stuck.ue_jug()
         goal_distance = direction['distance']
-        mission_count = 0
         if mission_count < 1:
-            if (mission_distance - 3) < goal_distance and goal_distance < (mission_distance + 3):
+            if (mission_distance - 7) < goal_distance and goal_distance < (mission_distance + 7):
                 adjust_direction(theta, magx_off, magy_off, lon2, lat2)
                 mission.mission()
                 mission_count += 1
@@ -115,7 +115,7 @@ def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/CANSAT2
         # ------------- calibration -------------#
         # xbee.str_trans('calibration Start')
         other.print_xbee('##--calibration Start--##\n')
-        magx_off, magy_off = calibration.cal(40, -40, 30)
+        magx_off, magy_off = calibration.cal(40, 40, 30)
         print(f'magx_off: {magx_off}\tmagy_off: {magy_off}\n')
         theta = angle_goal(magx_off, magy_off, lon2, lat2)
         adjust_direction(theta, magx_off, magy_off, lon2, lat2)
@@ -170,14 +170,14 @@ def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/CANSAT2
                         else:
                             adj = -30
                     print(f'angle ----- {theta}')
-                    strength_l, strength_r = 60 + adj, -70 - adj
+                    strength_l, strength_r = 65 + adj, -70 - adj
                     motor.motor_continue(strength_l, strength_r)
                     time.sleep(0.04)
             t_stuck_count += 1
             other.log(logpath, datetime.datetime.now(), time.time() - t_start, lat1, lon1, direction['distance'], angle_relative)
-            motor.deceleration(strength_l, strength_r)
-            time.sleep(2)
-            lat_new, lon_new = gps.location()
+        motor.deceleration(strength_l, strength_r)
+        #time.sleep(2)
+        lat_new, lon_new = gps.location()
 
         direction = calibration.calculate_direction(lon2, lat2)
         goal_distance = direction['distance']
@@ -189,10 +189,10 @@ if __name__ == '__main__':
     # lat2 = 35.9234892
     # lon2 = 139.9118744
     #lat2, lon2 = 35.921247, 139.910953
-    lat2 = 35.9240220
-    lon2 = 139.9112816
+    lat2 = 35.9240157
+    lon2 = 139.9112665
     gps.open_gps()
     bmx055.bmx055_setup()
     motor.setup()
 
-    drive(lon2, lat2, thd_distance=5, t_adj_gps=20) 
+    drive(lon2, lat2, thd_distance=5, t_adj_gps=30) 
