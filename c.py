@@ -1,6 +1,6 @@
 import time
 import xbee
-from xbee import str_trans , str_recieve
+from xbee import str_trans , str_receive
 from gps import open_gps , read_gps , close_gps
 import escape
 
