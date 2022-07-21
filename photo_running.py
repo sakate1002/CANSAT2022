@@ -4,7 +4,7 @@ import sys
 import numpy as np
 
 import sensor.camera.take as take
-import xbee
+import sensor.communication.xbee as xbee
 import sensor.axis.bmx055 as bmx055
 from other import print_xbee
 import motor

@@ -3,10 +3,10 @@ import datetime
 import random
 from other import print_xbee
 
-import xbee
-import motor
-import SensorModule.gps.gps_navigate as gps_navigate
-import SensorModule.gps.gps as gps
+import sensor.communication.xbee as xbee
+import sensor.motor.motor as motor
+import sensor.gps.gps_navigate as gps_navigate
+import sensor.gps.gps as gps
 import sensor.axis.bmx055 as bmx055
 import other
 

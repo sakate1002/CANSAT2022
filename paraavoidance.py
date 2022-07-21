@@ -6,7 +6,7 @@
 
 import traceback
 
-import motor
+import sensor.motor.motor as motor
 import paradetection
 
 

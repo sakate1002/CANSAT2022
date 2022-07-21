@@ -1,6 +1,6 @@
 import time
-from xbee import str_trans
-from SensorModule.gps.gps import open_gps , read_gps , close_gps
+from sensor.communication.xbee import str_trans
+from sensor.gps.gps import open_gps , read_gps , close_gps
 open_gps()
 while True :
     a = read_gps()

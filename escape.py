@@ -1,4 +1,4 @@
-import motor
+import sensor.motor.motor as motor
 import melt2
 import stuck
 

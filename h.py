@@ -17,17 +17,17 @@ import time
 import sensor.camera.take as take
 import datetime
 import pigpio
-import xbee
+import sensor.communication.xbee as xbee
 import sensor.axis.bmx055 as bmx055
 import sensor.environment.bme280 as bme280
-import SensorModule.gps.gps as gps
+import sensor.gps.gps as gps
 import other
 import calibration
 import release_land
 import land
 import stuck
 from other import print_xbee
-from xbee import str_trans
+from sensor.communication.xbee import str_trans
 
 dateTime = datetime.datetime.now()
 

@@ -17,11 +17,11 @@ import time
 import sensor.camera.take as take
 import datetime
 import pigpio
-import xbee
+import sensor.communication.xbee as xbee
 import sensor.axis.bmx055 as bmx055
 import sensor.environment.bme280 as bme280
-import SensorModule.gps.gps as gps
-import melt
+import sensor.gps.gps as gps
+import melt2
 import paradetection
 import paraavoidance
 import other
