@@ -280,18 +280,18 @@ if __name__ == '__main__':
 
      #######--------------------------All sensor Check--------------------------#######
 
-    print_xbee('#####-----Sensor check phase start#####')
-    other.log(log_phase, '8', 'Sensor check phase start',
-              datetime.datetime.now(), time.time() - t_start)
-    phase = other.phase(log_phase)
-    print_xbee(f'Phase:\t{phase}')
-    if phase == 8:
-        other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
+    #print_xbee('#####-----Sensor check phase start#####')
+    #other.log(log_phase, '8', 'Sensor check phase start',
+              #datetime.datetime.now(), time.time() - t_start)
+    #phase = other.phase(log_phase)
+    #print_xbee(f'Phase:\t{phase}')
+    #if phase == 8:
+        #other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
                    "Sensor check Start")
-        sensor_ch.all()
-        other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
+        #sensor_ch.all()
+        #other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
                    "Sensor check Finished")
-    print_xbee('########-----Checked-----#######\n \n')
+    #print_xbee('########-----Checked-----#######\n \n')
 
 
     
