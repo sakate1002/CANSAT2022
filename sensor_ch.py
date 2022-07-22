@@ -94,7 +94,7 @@ print('---acc---')
 try:
     bmx055_setup()
     for _ in range(5):
-        acc_data = bmx055.acc_data_Read()
+        acc_data = bmx055.acc_dataRead()
         print(acc_data)
         time.sleep(0.2)
 except:
