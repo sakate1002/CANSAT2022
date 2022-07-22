@@ -32,7 +32,8 @@ import motor
 import stuck
 import escape
 from other import print_xbee
-#from sensor_ch import all
+import sensor_ch
+from sensor_ch import all
 
 dateTime = datetime.datetime.now()
 
@@ -80,7 +81,13 @@ log_paraavoidance = other.filename(
     '/home/cansat2022/CANSAT2022/log/paraAvoidanceLog', 'txt')
 log_magrunning = other.filename(
     '/home/cansat2022/CANSAT2022/log/MagrunningLog', 'txt')
+log_cmotor = other.filename(
+    '/home/cansat2022/CANSAT2022/log/CmotorLog', 'txt')
+log_allsensor = other.filename(
+    '/home/cansat2022/CANSAT2022/log/AllsensorLog', 'txt')
+
 path_paradete = '/home/cansat2022/CANSAT2022/photo_paradete/paradete'
+
 
 def setup():
     global phase
@@ -271,27 +278,27 @@ if __name__ == '__main__':
     phase = other.phase(log_phase)
     print_xbee(f'Phase:\t{phase}')
     if phase == 7:
-        other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
+        other.log(log_cmotor, datetime.datetime.now(), time.time() - t_start,
                    "Cmotor Start")
         mission.mission()
-        other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
+        other.log(log_cmotor, datetime.datetime.now(), time.time() - t_start,
                    "Cmotor Finished")
     print_xbee('########-----Cmotored-----#######\n \n')
 
      #######--------------------------All sensor Check--------------------------#######
 
-    #print_xbee('#####-----Sensor check phase start#####')
-    #other.log(log_phase, '8', 'Sensor check phase start',
-              #datetime.datetime.now(), time.time() - t_start)
-    #phase = other.phase(log_phase)
-    #print_xbee(f'Phase:\t{phase}')
-    #if phase == 8:
-        #other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
-                   #"Sensor check Start")
-        #sensor_ch.all()
-        #other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
-                   #"Sensor check Finished")
-    #print_xbee('########-----Checked-----#######\n \n')
+    print_xbee('#####-----Sensor check phase start#####')
+    other.log(log_phase, '8', 'Sensor check phase start',
+              datetime.datetime.now(), time.time() - t_start)
+    phase = other.phase(log_phase)
+    print_xbee(f'Phase:\t{phase}')
+    if phase == 8:
+        other.log(log_allsensor, datetime.datetime.now(), time.time() - t_start,
+                   "Sensor check Start")
+        sensor_ch.all()
+        other.log(log_allsensor, datetime.datetime.now(), time.time() - t_start,
+                   "Sensor check Finished")
+    print_xbee('########-----Checked-----#######\n \n')
 
 
     
