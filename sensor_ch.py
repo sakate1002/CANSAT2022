@@ -115,3 +115,63 @@ try:
     print(data)
 except:
     print('error : gps')
+
+def all():
+    print('---xbee---')
+    try:
+        xbee.on()
+        for i in range(10):
+            xbee.str_trans(str(i) + '  : reseive?')
+    except:
+        print('error : xbee')
+    
+    print('----i2cdetect----')
+    os.system('i2cdetect -y 1')
+
+    print('\n---Environment---')
+    try:
+        bme280.bme280_setup()
+        bme280.bme280_calib_param()
+        for _ in range(5):
+            bme_data = bme280.bme280_read()
+            print(bme_data)
+            time.sleep(1)
+    except:
+        print('error : env')
+
+
+    print('---mag---')
+    try:
+        bmx055.bmx055_setup()
+        for _ in range(5):
+            mag_data = bmx055.mag_dataRead()
+            print(mag_data)
+            time.sleep(0.2)
+    except:
+            print('error : mag')
+
+    print('---acc---')
+    try:
+        bmx055_setup()
+        for _ in range(5):
+            acc_data = bmx055.acc_dataRead()
+            print(acc_data)
+            time.sleep(0.2)
+    except:
+        print('error : acc')
+
+    print('---xbee---')
+    try:
+        xbee.on()
+        for i in range(10):
+            xbee.str_trans(str(i) + '  : reseive?')
+    except:
+        print('error : xbee')
+
+    print('---gps---')
+    try:
+        gps.open_gps()
+        data = gps.gps_data_read()
+        print(data)
+    except:
+        print('error : gps')
