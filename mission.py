@@ -148,7 +148,7 @@ def mission():
     motor(-30, 0.4, 1)
     motor_stop()
     photoName = picture('photo/photo', 320, 240)
-    motor(11, 0.4, 1)
+    motor(13, 0.4, 1)
     motor_stop()
 
 
@@ -162,7 +162,7 @@ if __name__ == "__main__":
             time.sleep(2.0)
             #photoName = picture('photo/photo', 320, 240)
             time.sleep(2.0)
-            motor(11, 0.4, 1)
+            motor(13, 0.4, 1)
             motor_stop()
             time.sleep(2.0)
     except KeyboardInterrupt:
