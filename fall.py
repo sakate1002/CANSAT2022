@@ -287,10 +287,10 @@ if __name__ == '__main__':
     #print_xbee(f'Phase:\t{phase}')
     #if phase == 8:
         #other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
-                   "Sensor check Start")
+                   #"Sensor check Start")
         #sensor_ch.all()
         #other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
-                   "Sensor check Finished")
+                   #"Sensor check Finished")
     #print_xbee('########-----Checked-----#######\n \n')
 
 
