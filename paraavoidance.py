@@ -39,7 +39,7 @@ def parachute_avoidance(flug, goalGAP):
     if flug == -1 or flug == 0:
         # print('flug')
         #motor.move(40, -40, 1)
-        motor.move(11, -11, 5)
+        motor.move(11, -13, 1)
 
 
 if __name__ == '__main__':
