@@ -203,7 +203,7 @@ if __name__ == '__main__':
     if phase == 4:
         other.log(log_phototest, datetime.datetime.now(), time.time() - t_start,
                    "Phototest Start")
-        take.picture()
+        take.picture('photo/photo', 320, 240)
         other.log(log_phototest, datetime.datetime.now(), time.time() - t_start,
                    "Phototest Finished")
     print_xbee('########-----Photed-----#######\n \n')
