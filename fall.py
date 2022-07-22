@@ -21,7 +21,7 @@ import xbee
 import bmx055
 import bme280
 import gps
-import melt
+import melt2
 import paradetection
 import paraavoidance
 import other
@@ -32,6 +32,7 @@ import motor
 import stuck
 import escape
 from other import print_xbee
+import sensor_ch
 
 dateTime = datetime.datetime.now()
 
@@ -287,7 +288,7 @@ if __name__ == '__main__':
     if phase == 8:
         other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
                    "Sensor check Start")
-        mission.mission()
+        sensor_ch.all()
         other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
                    "Sensor check Finished")
     print_xbee('########-----Checked-----#######\n \n')
