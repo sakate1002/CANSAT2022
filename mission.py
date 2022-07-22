@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import pigpio
 import picamera
 import time
