@@ -209,30 +209,15 @@ if __name__ == '__main__':
     #     print_xbee('#####-----Error(melting)-----#####\n \n')
     #######-----------------------------------------------------------########
 
-    #######--------------------------Center Motor Check--------------------------#######
-
-    print_xbee('#####-----Cmotor phase start#####')
-    other.log(log_phase, '5', 'Cmotor phase start',
-              datetime.datetime.now(), time.time() - t_start)
-    phase = other.phase(log_phase)
-    print_xbee(f'Phase:\t{phase}')
-    if phase == 5:
-        other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
-                  gps.gps_data_read(), "Cmotor Start")
-        mission.mission()
-        other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
-                  gps.gps_data_read(), "Cmotor Finished")
-    print_xbee('########-----Cmotored-----#######\n \n')
-
     #######--------------------------Paraavo--------------------------#######
 
     print_xbee('#####-----Para avoid start-----#####')
-    other.log(log_phase, '6', 'Paraavo phase start',
+    other.log(log_phase, '5', 'Paraavo phase start',
               datetime.datetime.now(), time.time() - t_start)
     phase = other.phase(log_phase)
     print_xbee(f'Phase:\t{phase}')
     count_paraavo = 0
-    if phase == 6:
+    if phase == 5:
         while count_paraavo < 3:
             flug, area, gap, photoname = paradetection.para_detection(
                 path_paradete, 320, 240, 200, 10, 120, 1)
@@ -250,6 +235,21 @@ if __name__ == '__main__':
     #     print_xbee('#####-----Error(paraavo)-----#####')
     #     print_xbee('#####-----Error(paraavo)-----#####\n \n')
     #######-----------------------------------------------------------########
+
+     #######--------------------------Center Motor Check--------------------------#######
+
+    print_xbee('#####-----Cmotor phase start#####')
+    other.log(log_phase, '6', 'Cmotor phase start',
+              datetime.datetime.now(), time.time() - t_start)
+    phase = other.phase(log_phase)
+    print_xbee(f'Phase:\t{phase}')
+    if phase == 6:
+        other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
+                  gps.gps_data_read(), "Cmotor Start")
+        mission.mission()
+        other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
+                  gps.gps_data_read(), "Cmotor Finished")
+    print_xbee('########-----Cmotored-----#######\n \n')
 
     #######--------------------------gps--------------------------#######
 

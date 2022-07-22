@@ -41,15 +41,15 @@ t_out_land = 30
 t_out_release_safe = 1000
 
 # variable for release
-thd_press_release = 0.3
-t_delta_release = 1  #時間を伸ばす！エレベーター
+thd_press_release = 0.25
+t_delta_release = 0.9  #時間を伸ばす！エレベーター
 
 # variable for landing
 thd_press_land = 0.15
 
 # variable for calibration
 strength_l_cal = 40
-strength_r_cal = -40
+strength_r_cal = 40
 t_rotation_cal = 0.2
 number_data = 30
 
@@ -110,7 +110,7 @@ if __name__ == '__main__':
             setup()
             print_xbee('#####-----Setup Phase ended-----##### \n \n')
             print_xbee('####----wait----#### ')
-            t_wait = 150
+            t_wait = 600
             for i in range(t_wait):
                 print_xbee(t_wait-i)
                 time.sleep(1)
@@ -201,10 +201,10 @@ if __name__ == '__main__':
     print_xbee(f'Phase:\t{phase}')
     if phase == 4:
         other.log(log_phototest, datetime.datetime.now(), time.time() - t_start,
-                  gps.gps_data_read(), "Phototest Start")
+                   "Phototest Start")
         take.picture()
         other.log(log_phototest, datetime.datetime.now(), time.time() - t_start,
-                  gps.gps_data_read(), "Phototest Finished")
+                   "Phototest Finished")
     print_xbee('########-----Photed-----#######\n \n')
     #######--------------------------Escape--------------------------#######
 
@@ -223,10 +223,10 @@ if __name__ == '__main__':
                 xbee.str_trans('Interrupted for safety')
                 exit()
         other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
-                  gps.gps_data_read(), "Melting Start")
+                   "Melting Start")
         escape.escape()
         other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
-                  gps.gps_data_read(), "Melting Finished")
+                   "Melting Finished")
     print_xbee('########-----Melted-----#######\n \n')
     # except Exception as e:
     #     tb = sys.exc_info()[2]
@@ -234,21 +234,6 @@ if __name__ == '__main__':
     #     print_xbee('#####-----Error(melting)-----#####')
     #     print_xbee('#####-----Error(melting)-----#####\n \n')
     #######-----------------------------------------------------------########
-
-    #######--------------------------Center Motor Check--------------------------#######
-
-    print_xbee('#####-----Cmotor phase start#####')
-    other.log(log_phase, '6', 'Cmotor phase start',
-              datetime.datetime.now(), time.time() - t_start)
-    phase = other.phase(log_phase)
-    print_xbee(f'Phase:\t{phase}')
-    if phase == 6:
-        other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
-                  gps.gps_data_read(), "Cmotor Start")
-        mission.mission()
-        other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
-                  gps.gps_data_read(), "Cmotor Finished")
-    print_xbee('########-----Cmotored-----#######\n \n')
 
     #######--------------------------Paraavo--------------------------#######
 
@@ -265,7 +250,7 @@ if __name__ == '__main__':
             print_xbee(
                 f'flug:{flug}\tarea:{area}\tgap:{gap}\tphotoname:{photoname}\n \n')
             other.log(log_paraavoidance, datetime.datetime.now(), time.time() -
-                      t_start, gps.gps_data_read(), flug, area, gap, photoname)
+                      t_start, flug, area, gap, photoname)
             paraavoidance.parachute_avoidance(flug, gap)
             if flug == -1 or flug == 0:
                 count_paraavo += 1
@@ -276,5 +261,36 @@ if __name__ == '__main__':
     #     print_xbee('#####-----Error(paraavo)-----#####')
     #     print_xbee('#####-----Error(paraavo)-----#####\n \n')
     #######-----------------------------------------------------------########
+
+    #######--------------------------Center Motor Check--------------------------#######
+
+    print_xbee('#####-----Cmotor phase start#####')
+    other.log(log_phase, '7', 'Cmotor phase start',
+              datetime.datetime.now(), time.time() - t_start)
+    phase = other.phase(log_phase)
+    print_xbee(f'Phase:\t{phase}')
+    if phase == 7:
+        other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
+                   "Cmotor Start")
+        mission.mission()
+        other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
+                   "Cmotor Finished")
+    print_xbee('########-----Cmotored-----#######\n \n')
+
+     #######--------------------------All sensor Check--------------------------#######
+
+    print_xbee('#####-----Sensor check phase start#####')
+    other.log(log_phase, '8', 'Sensor check phase start',
+              datetime.datetime.now(), time.time() - t_start)
+    phase = other.phase(log_phase)
+    print_xbee(f'Phase:\t{phase}')
+    if phase == 8:
+        other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
+                   "Sensor check Start")
+        mission.mission()
+        other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
+                   "Sensor check Finished")
+    print_xbee('########-----Checked-----#######\n \n')
+
 
     
