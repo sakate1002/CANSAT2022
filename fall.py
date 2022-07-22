@@ -32,7 +32,7 @@ import motor
 import stuck
 import escape
 from other import print_xbee
-from sensor_ch import all
+#from sensor_ch import all
 
 dateTime = datetime.datetime.now()
 
