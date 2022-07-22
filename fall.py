@@ -43,7 +43,7 @@ t_out_release_safe = 1000
 
 # variable for release
 thd_press_release = 0.25
-t_delta_release = 0.9  #時間を伸ばす！エレベーター
+t_delta_release = 40  #時間を伸ばす！エレベーター
 
 # variable for landing
 thd_press_land = 0.15
