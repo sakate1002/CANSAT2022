@@ -176,5 +176,3 @@ def all():
     except:
         print('error : gps')
     
-if __name__ == '__main__':
-    print("私は直接呼ばれた時だけしゃべります")
