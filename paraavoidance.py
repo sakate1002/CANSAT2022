@@ -37,9 +37,9 @@ def parachute_avoidance(flug, goalGAP):
         except KeyboardInterrupt:
             print("stop")
     if flug == -1 or flug == 0:
-         print('flug')
-        motor.move(30, -30, 1)
-        motor.move(11, -13, 1)
+         #print('flug')
+            motor.move(30, -30, 1)
+            motor.move(11, -13, 1)
 
 
 if __name__ == '__main__':
