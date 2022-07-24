@@ -32,8 +32,8 @@ import motor
 import stuck
 import escape
 from other import print_xbee
-import sensor_ch
-from sensor_ch import all
+#import sensor_ch
+#from sensor_ch import all
 
 dateTime = datetime.datetime.now()
 
@@ -44,7 +44,7 @@ t_out_release_safe = 1000
 
 # variable for release
 thd_press_release = 0.25
-t_delta_release = 40  #時間を伸ばす！エレベーター
+t_delta_release = 0.9  #時間を伸ばす！エレベーター
 
 # variable for landing
 thd_press_land = 0.15
@@ -287,18 +287,18 @@ if __name__ == '__main__':
 
      #######--------------------------All sensor Check--------------------------#######
 
-    print_xbee('#####-----Sensor check phase start#####')
-    other.log(log_phase, '8', 'Sensor check phase start',
-              datetime.datetime.now(), time.time() - t_start)
-    phase = other.phase(log_phase)
-    print_xbee(f'Phase:\t{phase}')
-    if phase == 8:
-        other.log(log_allsensor, datetime.datetime.now(), time.time() - t_start,
-                   "Sensor check Start")
-        sensor_ch.all()
-        other.log(log_allsensor, datetime.datetime.now(), time.time() - t_start,
-                   "Sensor check Finished")
-    print_xbee('########-----Checked-----#######\n \n')
+    #print_xbee('#####-----Sensor check phase start#####')
+    #other.log(log_phase, '8', 'Sensor check phase start',
+              #datetime.datetime.now(), time.time() - t_start)
+    #phase = other.phase(log_phase)
+    #print_xbee(f'Phase:\t{phase}')
+    #if phase == 8:
+        #other.log(log_allsensor, datetime.datetime.now(), time.time() - t_start,
+                   #"Sensor check Start")
+        #sensor_ch.all()
+        #other.log(log_allsensor, datetime.datetime.now(), time.time() - t_start,
+                   #"Sensor check Finished")
+    #print_xbee('########-----Checked-----#######\n \n')
 
 
     
