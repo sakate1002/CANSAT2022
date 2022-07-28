@@ -12,8 +12,8 @@ import paradetection
 
 def parachute_avoidance(flug, goalGAP):
     # --- There is Parachute around rover ---#
-    stuck.ue_jug()
-    
+    stuck.ue_jugkai()
+
     if flug == 1:
         # --- Avoid parachute by back control ---#
         try:
