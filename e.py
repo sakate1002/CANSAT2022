@@ -165,21 +165,6 @@ if __name__ == '__main__':
         print_xbee('#####-----Error(Landing)-----#####\n \n')
     # #######-----------------------------------------------------------########
 
-    #######--------------------------Photo Test----------------------#######
-
-    #print_xbee('#####-----Photo test start####')
-    #other.log(log_phase, '3', 'Phototest phase start',
-              #datetime.datetime.now(), time.time() - t_start)
-    #phase = other.phase(log_phase)
-    #print_xbee(f'Phase:\t{phase}')
-    #if phase == 3:
-        #other.log(log_phototest, datetime.datetime.now(), time.time() - t_start,
-                  #gps.gps_data_read(), "Phototest Start")
-        #take.picture('photo/photo', 320, 240)
-        #time.sleep(5.0)
-        #other.log(log_phototest, datetime.datetime.now(), time.time() - t_start,
-                  #gps.gps_data_read(), "Phototest Finished")
-    #print_xbee('########-----Photed-----#######\n \n')
     #######--------------------------Escape--------------------------#######
 
     print_xbee('#####-----Melting phase start#####')
@@ -212,12 +197,12 @@ if __name__ == '__main__':
     #######--------------------------Paraavo--------------------------#######
 
     print_xbee('#####-----Para avoid start-----#####')
-    other.log(log_phase, '5', 'Paraavo phase start',
+    other.log(log_phase, '4', 'Paraavo phase start',
               datetime.datetime.now(), time.time() - t_start)
     phase = other.phase(log_phase)
     print_xbee(f'Phase:\t{phase}')
     count_paraavo = 0
-    if phase == 5:
+    if phase == 4:
         while count_paraavo < 3:
             flug, area, gap, photoname = paradetection.para_detection(
                 path_paradete, 320, 240, 200, 10, 120, 1)
@@ -236,7 +221,23 @@ if __name__ == '__main__':
     #     print_xbee('#####-----Error(paraavo)-----#####\n \n')
     #######-----------------------------------------------------------########
 
-     #######--------------------------Center Motor Check--------------------------#######
+    #######--------------------------Photo Test----------------------#######
+
+    print_xbee('#####-----Photo test start####')
+    other.log(log_phase, '5', 'Phototest phase start',
+              datetime.datetime.now(), time.time() - t_start)
+    phase = other.phase(log_phase)
+    print_xbee(f'Phase:\t{phase}')
+    if phase == 5:
+        other.log(log_phototest, datetime.datetime.now(), time.time() - t_start,
+                  gps.gps_data_read(), "Phototest Start")
+        take.picture('photo/photo', 320, 240)
+        time.sleep(5.0)
+        other.log(log_phototest, datetime.datetime.now(), time.time() - t_start,
+                  gps.gps_data_read(), "Phototest Finished")
+    print_xbee('########-----Photed-----#######\n \n')
+
+    #######--------------------------Center Motor Check--------------------------#######
 
     print_xbee('#####-----Cmotor phase start#####')
     other.log(log_phase, '6', 'Cmotor phase start',
