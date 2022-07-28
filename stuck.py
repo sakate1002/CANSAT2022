@@ -37,18 +37,18 @@ def ue_jug():
             print(f'acc: {z}')
             if ue_count > 2:
                 #motor.move(50, -50, 1, False)
-                motor.move(13, -15, 0.1, False)
+                motor.move( 20, -25, 0.1, False)
             elif ue_count > 4:
                 #motor.move(70, -70, 1, False)
-                motor.move(15, -17, 0.1, False)
+                motor.move(50, -65, 0.1, False)
             elif ue_count > 6:
                 #motor.move(100, -100, 1, False)
-                motor.move(17, -19, 0.1, False)
+                motor.move(70, -90, 0.1, False)
             else:
                 #motor.move(30, -30, 1, False)
                 motor.move(11, -13, 0.1, False)
             time.sleep(2)
-            ue_count += 1
+            ue_count += 
 
 def ue_jugkai():
     ue_count = 0
@@ -79,16 +79,16 @@ def ue_jugkai():
             print(f'acc: {z}')
             if ue_count > 2:
                 #motor.move(50, -50, 1, False)
-                motor.move(13, -15, 0.1, False)
+                motor.move(16, -19, 0.1, False)
             elif ue_count > 4:
                 #motor.move(70, -70, 1, False)
-                motor.move(15, -17, 0.1, False)
+                motor.move(19, -21, 0.1, False)
             elif ue_count > 6:
                 #motor.move(100, -100, 1, False)
-                motor.move(17, -19, 0.1, False)
+                motor.move(22, -24, 0.1, False)
             else:
                 #motor.move(30, -30, 1, False)
-                motor.move(11, -13, 0.1, False)
+                motor.move(13, -16, 0.1, False)
             time.sleep(2)
             ue_count += 1
 
