@@ -90,7 +90,7 @@ def ue_jugkai():
                 motor.move(22, -24, 0.1, False)
             else:
                 #motor.move(30, -30, 1, False)
-                motor.move(13, 0, 0.1, False)
+                motor.move(16, 15, 0.1, False)
             time.sleep(2)
             ue_count += 1
 
