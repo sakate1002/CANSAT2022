@@ -203,6 +203,7 @@ if __name__ == '__main__':
     print_xbee(f'Phase:\t{phase}')
     count_paraavo = 0
     if phase == 3:
+        stuck.ue_jugkai()
         while count_paraavo < 3:
             flug, area, gap, photoname = paradetection.para_detection(
                 path_paradete, 320, 240, 200, 10, 120, 1)
