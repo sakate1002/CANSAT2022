@@ -145,11 +145,11 @@ def picture(path, width=320, height=240):
 
 def mission():
     photoName = picture('photo/photo', 320, 240)
-    motor(-30, 0.4, 1)
+    motor(-23, 0.4, 1)
     motor(0, 2)
     motor_stop()
     photoName = picture('photo/photo', 320, 240)
-    motor(13, 0.4, 1)
+    motor(15, 0.4, 1)
     motor(0, 2)
     motor_stop()
 
@@ -157,13 +157,13 @@ def mission():
 if __name__ == "__main__":
     try:
             #photoName = picture('photo/photo', 320, 240)
-            motor(-30, 0.4, 1)
+            motor(-23, 0.4, 1)
             motor(0, 2)
             motor_stop()
             time.sleep(2.0)
             #photoName = picture('photo/photo', 320, 240)
             time.sleep(2.0)
-            motor(13, 0.4, 1)
+            motor(15, 0.4, 1)
             motor(0, 2)
             motor_stop()
     except KeyboardInterrupt:
