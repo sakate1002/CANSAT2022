@@ -48,7 +48,7 @@ def ue_jug():
                 #motor.move(30, -30, 1, False)
                 motor.move(11, -13, 0.1, False)
             time.sleep(2)
-            ue_count += 
+            ue_count += 1
 
 def ue_jugkai():
     ue_count = 0
