@@ -206,10 +206,10 @@ def image_guided_driving(log_photorunning, G_thd, magx_off, magy_off, lon2, lat2
                 auto_count = 0
                 if -100 <= gap and gap <= -65:
                     print_xbee('Turn left')
-                    motor.move(-33, 40, 0.1)
+                    motor.move(-33, -40, 0.1)
                 elif 65 <= gap and gap <= 100:
                     print_xbee('Turn right')
-                    motor.move(40, -33, 0.1)
+                    motor.move(40, 33, 0.1)
                 else:
                     print_xbee('Go straight long')
                     adjustment_mag(40, 3, magx_off, magy_off)
@@ -217,10 +217,10 @@ def image_guided_driving(log_photorunning, G_thd, magx_off, magy_off, lon2, lat2
                 auto_count = 0
                 if -100 <= gap and gap <= -65:
                     print_xbee('Turn left')
-                    motor.move(-25, 30, 0.1)
+                    motor.move(-25, -30, 0.1)
                 elif 65 <= gap and gap <= 100:
                     print_xbee('Turn right')
-                    motor.move(30, -25, 1)
+                    motor.move(30, 25, 1)
                 else:
                     print_xbee('Go straight middle')
                     adjustment_mag(40, 1, magx_off, magy_off)
