@@ -149,7 +149,7 @@ def mission():
     motor(0, 2)
     motor_stop()
     photoName = picture('photo/photo', 320, 240)
-    motor(15, 0.4, 1)
+    motor(13, 0.3, 1)
     motor(0, 2)
     motor_stop()
 
