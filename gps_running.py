@@ -101,6 +101,12 @@ def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/CANSAT2
         goal_distance = direction['distance']
         if mission_count < 1:
             if (mission_distance - 10) < goal_distance and goal_distance < (mission_distance + 10):
+                 # ------------- calibration -------------#
+                 # xbee.str_trans('calibration Start')
+                #other.print_xbee('##--calibration Start--##\n')
+                #magx_off, magy_off = calibration.cal(40, 40, 30)
+                #print(f'magx_off: {magx_off}\tmagy_off: {magy_off}\n')
+                #theta = angle_goal(magx_off, magy_off, lon2, lat2)
                 adjust_direction(theta, magx_off, magy_off, lon2, lat2)
                 mission.mission()
                 mission_count += 1
