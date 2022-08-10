@@ -145,7 +145,7 @@ def picture(path, width=320, height=240):
 
 def mission():
     photoName = picture('photo/photo', 320, 240)
-    motor(-20, 0.4, 1)
+    motor(-28, 0.4, 1)
     motor(0, 2)
     motor_stop()
     photoName = picture('photo/photo', 320, 240)
@@ -157,7 +157,7 @@ def mission():
 if __name__ == "__main__":
     try:
             #photoName = picture('photo/photo', 320, 240)
-            motor(-20, 0.4, 1)
+            motor(-28, 0.4, 1)
             motor(0, 2)
             motor_stop()
             time.sleep(2.0)
