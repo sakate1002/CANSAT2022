@@ -32,10 +32,14 @@ def para_detection(imgpath, width, height, H_min, H_max, S_thd, para_thd):
         hig, wid, _ = img.shape
 
         img_HSV = cv2.cvtColor(cv2.GaussianBlur(img, (15, 15), 0), cv2.COLOR_BGR2HSV_FULL)
-        h = img_HSV[:, :, 0]
-        s = img_HSV[:, :, 1]
-        mask = np.zeros(h.shape, dtype=np.uint8)
-        mask[((h < H_max) | (h > H_min)) & (s > S_thd)] = 255
+        #h = img_HSV[:, :, 0]
+        #s = img_HSV[:, :, 1]
+        #mask = np.zeros(h.shape, dtype=np.uint8)
+        #mask[((h < H_max) | (h > H_min)) & (s > S_thd)] = 255
+
+        red_min = np.array([120, 120, 120], np.uint8) #赤色検知最小値
+        red_max = np.array([255, 255, 255], np.uint8) #赤色検知最大値
+        mask = cv2.inRange(img_HSV, red_min, red_max)
 
         contours, hierarchy = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
