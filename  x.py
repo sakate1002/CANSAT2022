@@ -32,7 +32,7 @@ import motor
 import stuck
 import escape
 from other import print_xbee
-import gps_running
+#import gps_running
 import photo_running
 
 dateTime = datetime.datetime.now()
@@ -90,14 +90,14 @@ log_photorunning = other.filename(
 def setup():
     global phase
     xbee.on()
-    gps.open_gps()
+    #gps.open_gps()
     bmx055.bmx055_setup()
     bme280.bme280_setup()
     bme280.bme280_calib_param()
 
 
 def close():
-    gps.close_gps()
+    #gps.close_gps()
     xbee.off()
 
 
@@ -217,8 +217,7 @@ if __name__ == '__main__':
         #other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
                   #gps.gps_data_read(), "Melting Start")
         escape.escape()
-        other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
-                  gps.gps_data_read(), "Melting Finished")
+        other.log(log_melting, datetime.datetime.now(), time.time() - t_start,  "Melting Finished")
     print_xbee('########-----Melted-----#######\n \n')
     # except Exception as e:
     #     tb = sys.exc_info()[2]
@@ -243,7 +242,7 @@ if __name__ == '__main__':
             print_xbee(
                 f'flug:{flug}\tarea:{area}\tgap:{gap}\tphotoname:{photoname}\n \n')
             other.log(log_paraavoidance, datetime.datetime.now(), time.time() -
-                      t_start, gps.gps_data_read(), flug, area, gap, photoname)
+                      t_start, flug, area, gap, photoname)
             paraavoidance.parachute_avoidance(flug, gap)
             if flug == -1 or flug == 0:
                 count_paraavo += 1
@@ -263,12 +262,10 @@ if __name__ == '__main__':
     phase = other.phase(log_phase)
     print_xbee(f'Phase:\t{phase}')
     if phase == 6:
-        other.log(log_phototest, datetime.datetime.now(), time.time() - t_start,
-                  gps.gps_data_read(), "Phototest Start")
+        other.log(log_phototest, datetime.datetime.now(), time.time() - t_start,  "Phototest Start")
         take.picture('photo/photo', 320, 240)
         time.sleep(5.0)
-        other.log(log_phototest, datetime.datetime.now(), time.time() - t_start,
-                  gps.gps_data_read(), "Phototest Finished")
+        other.log(log_phototest, datetime.datetime.now(), time.time() - t_start,  "Phototest Finished")
     print_xbee('########-----Photed-----#######\n \n')
 
     #######--------------------------Center Motor Check--------------------------#######
@@ -279,11 +276,9 @@ if __name__ == '__main__':
     phase = other.phase(log_phase)
     print_xbee(f'Phase:\t{phase}')
     if phase == 7:
-        other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
-                  gps.gps_data_read(), "Cmotor Start")
+        other.log(log_melting, datetime.datetime.now(), time.time() - t_start, "Cmotor Start")
         mission.mission()
-        other.log(log_melting, datetime.datetime.now(), time.time() - t_start,
-                  gps.gps_data_read(), "Cmotor Finished")
+        other.log(log_melting, datetime.datetime.now(), time.time() - t_start, "Cmotor Finished")
     print_xbee('########-----Cmotored-----#######\n \n')
 
     ######------------------photo running---------------------##########
