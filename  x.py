@@ -291,7 +291,7 @@ if __name__ == '__main__':
         if phase == 9:
             magx_off, magy_off = calibration.cal(40, 40, 60)
             photo_running.image_guided_driving(
-                log_photorunning, G_thd, magx_off, magy_off, lon2, lat2, th_distance, t_adj_gps, gpsrun=True)
+                log_photorunning, G_thd, magx_off, magy_off, lon2, lat2, th_distance, t_adj_gps)
     except Exception as e:
         tb = sys.exc_info()[2]
         print_xbee("message:{0}".format(e.with_traceback(tb)))
