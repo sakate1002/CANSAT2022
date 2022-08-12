@@ -37,16 +37,16 @@ def ue_jug():
             print(f'acc: {z}')
             if ue_count > 2:
                 #motor.move(50, -50, 1, False)
-                motor.move( 20, -25, 1, False)
+                motor.move(85, -85, 1, False)
             elif ue_count > 4:
                 #motor.move(70, -70, 1, False)
-                motor.move(50, -65, 1, False)
+                motor.move(90, -90, 1, False)
             elif ue_count > 6:
                 #motor.move(100, -100, 1, False)
-                motor.move(70, -90, 1, False)
+                motor.move(95, -95, 1, False)
             else:
                 #motor.move(30, -30, 1, False)
-                motor.move(11, -13, 1, False)
+                motor.move(80, -80, 1, False)
             time.sleep(2)
             ue_count += 1
 
@@ -78,19 +78,19 @@ def ue_jugkai():
             print(f'下だよ{ue_count}')
             print(f'acc: {z}')
             if ue_count > 2:
-                motor.move(13, -16, 0.1, False)
+                motor.move(85, -85, 0.1, False)
             elif ue_count > 4:
                 #motor.move(50, -50, 1, False)
-                motor.move(16, -19, 0.1, False)
+                motor.move(90, -90, 0.1, False)
             elif ue_count > 6:
                 #motor.move(70, -70, 1, False)
-                motor.move(19, -21, 0.1, False)
+                motor.move(95, -95, 0.1, False)
             elif ue_count > 8:
                 #motor.move(100, -100, 1, False)
-                motor.move(22, -24, 0.1, False)
+                motor.move(99, -99, 0.1, False)
             else:
                 #motor.move(30, -30, 1, False)
-                motor.move(16, 15, 0.1, False)
+                motor.move(80, -80, 0.1, False)
             time.sleep(2)
             ue_count += 1
 
