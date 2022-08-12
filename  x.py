@@ -1,3 +1,4 @@
+from inspect import stack
 import sys
 sys.path.append('/home/cansat2022/CANSAT2022/SensorModule/gps')
 sys.path.append('/home/cansat2022/CANSAT2022/SensorModule/communication')
@@ -235,6 +236,7 @@ if __name__ == '__main__':
     print_xbee(f'Phase:\t{phase}')
     if phase == 5:
         other.log(log_melting, datetime.datetime.now(), time.time() - t_start, "Cmotor Start")
+        stack.uejugkai()
         mission.mission()
         other.log(log_melting, datetime.datetime.now(), time.time() - t_start, "Cmotor Finished")
     print_xbee('########-----Cmotored-----#######\n \n')
