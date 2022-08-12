@@ -199,14 +199,28 @@ if __name__ == '__main__':
         print_xbee('#####-----Error(Landing)-----#####\n \n')
     # #######-----------------------------------------------------------########
 
-    #######--------------------------Escape--------------------------#######
+    #######--------------------------Photo Test----------------------#######
 
-    print_xbee('#####-----Melting phase start#####')
-    other.log(log_phase, '4', 'Melting phase start',
+    print_xbee('#####-----Photo test start####')
+    other.log(log_phase, '4', 'Phototest phase start',
               datetime.datetime.now(), time.time() - t_start)
     phase = other.phase(log_phase)
     print_xbee(f'Phase:\t{phase}')
     if phase == 4:
+        other.log(log_phototest, datetime.datetime.now(), time.time() - t_start,  "Phototest Start")
+        take.picture('photo/photo', 320, 240)
+        time.sleep(5.0)
+        other.log(log_phototest, datetime.datetime.now(), time.time() - t_start,  "Phototest Finished")
+    print_xbee('########-----Photed-----#######\n \n')
+
+    #######--------------------------Escape--------------------------#######
+
+    print_xbee('#####-----Melting phase start#####')
+    other.log(log_phase, '5', 'Melting phase start',
+              datetime.datetime.now(), time.time() - t_start)
+    phase = other.phase(log_phase)
+    print_xbee(f'Phase:\t{phase}')
+    if phase == 5:
         # 落下試験用の安全対策（落下しないときにXbeeでプログラム終了)
         #while time.time() - t_land_start <= t_out_release_safe:
             #xbee.str_trans('continue? y/n \t')
@@ -230,11 +244,11 @@ if __name__ == '__main__':
     #######--------------------------Center Motor Check--------------------------#######
 
     print_xbee('#####-----Cmotor phase start#####')
-    other.log(log_phase, '5', 'Cmotor phase start',
+    other.log(log_phase, '6', 'Cmotor phase start',
               datetime.datetime.now(), time.time() - t_start)
     phase = other.phase(log_phase)
     print_xbee(f'Phase:\t{phase}')
-    if phase == 5:
+    if phase == 6:
         other.log(log_melting, datetime.datetime.now(), time.time() - t_start, "Cmotor Start")
         stack.uejugkai()
         mission.mission()
@@ -244,12 +258,12 @@ if __name__ == '__main__':
     #######--------------------------Paraavo--------------------------#######
 
     print_xbee('#####-----Para avoid start-----#####')
-    other.log(log_phase, '6', 'Paraavo phase start',
+    other.log(log_phase, '7', 'Paraavo phase start',
               datetime.datetime.now(), time.time() - t_start)
     phase = other.phase(log_phase)
     print_xbee(f'Phase:\t{phase}')
     count_paraavo = 0
-    if phase == 6:
+    if phase == 7:
         stuck.ue_jugkai()
         while count_paraavo < 3:
             flug, area, gap, photoname = paradetection.para_detection(
@@ -268,20 +282,6 @@ if __name__ == '__main__':
     #     print_xbee('#####-----Error(paraavo)-----#####')
     #     print_xbee('#####-----Error(paraavo)-----#####\n \n')
     #######-----------------------------------------------------------########
-
-    #######--------------------------Photo Test----------------------#######
-
-    print_xbee('#####-----Photo test start####')
-    other.log(log_phase, '7', 'Phototest phase start',
-              datetime.datetime.now(), time.time() - t_start)
-    phase = other.phase(log_phase)
-    print_xbee(f'Phase:\t{phase}')
-    if phase == 7:
-        other.log(log_phototest, datetime.datetime.now(), time.time() - t_start,  "Phototest Start")
-        take.picture('photo/photo', 320, 240)
-        time.sleep(5.0)
-        other.log(log_phototest, datetime.datetime.now(), time.time() - t_start,  "Phototest Finished")
-    print_xbee('########-----Photed-----#######\n \n')
 
     #######--------------------------Center Motor Check--------------------------#######
 
