@@ -38,8 +38,8 @@ import photo_running
 dateTime = datetime.datetime.now()
 
 # variable for timeout
-t_out_release = 200
-t_out_land = 200
+t_out_release = 300
+t_out_land = 300
 t_out_release_safe = 1000
 
 # variable for release
