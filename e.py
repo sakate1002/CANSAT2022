@@ -62,7 +62,7 @@ lat2 = 35.9237657
 lon2 = 139.9113547
 
 th_distance = 5
-t_adj_gps = 7
+t_adj_gps = 20
 
 # variable for photorun
 G_thd = 50
@@ -116,7 +116,7 @@ if __name__ == '__main__':
             setup()
             print_xbee('#####-----Setup Phase ended-----##### \n \n')
             print_xbee('####----wait----#### ')
-            t_wait = 20
+            t_wait = 60
             for i in range(t_wait):
                 print_xbee(t_wait-i)
                 time.sleep(1)
