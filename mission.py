@@ -156,12 +156,12 @@ def mission():
 
 if __name__ == "__main__":
     try:
-            #photoName = picture('photo/photo', 320, 240)
+            photoName = picture('photo/photo', 320, 240)
             motor(-28, 0.4, 1)
             motor(0, 2)
             motor_stop()
             time.sleep(2.0)
-            #photoName = picture('photo/photo', 320, 240)
+            photoName = picture('photo/photo', 320, 240)
             time.sleep(2.0)
             motor(15, 0.4, 1)
             motor(0, 2)
