@@ -117,7 +117,7 @@ if __name__ == '__main__':
             setup()
             print_xbee('#####-----Setup Phase ended-----##### \n \n')
             print_xbee('####----wait----#### ')
-            t_wait = 20
+            t_wait = 5
             for i in range(t_wait):
                 print_xbee(t_wait-i)
                 time.sleep(1)
@@ -250,7 +250,7 @@ if __name__ == '__main__':
     print_xbee(f'Phase:\t{phase}')
     if phase == 6:
         other.log(log_melting, datetime.datetime.now(), time.time() - t_start, "Cmotor Start")
-        stack.uejugkai()
+        stuck.ue_jugkai()
         mission.mission()
         other.log(log_melting, datetime.datetime.now(), time.time() - t_start, "Cmotor Finished")
     print_xbee('########-----Cmotored-----#######\n \n')
