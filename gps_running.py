@@ -100,7 +100,7 @@ def drive(lon2, lat2, thd_distance, t_adj_gps, logpath='/home/cansat2022/CANSAT2
         stuck.ue_jug()
         goal_distance = direction['distance']
         if mission_count < 1:
-            if (mission_distance - 5) < goal_distance and goal_distance < (mission_distance + 5):
+            if (mission_distance - 7) < goal_distance and goal_distance < (mission_distance + 7):
                  # ------------- calibration -------------#
                  # xbee.str_trans('calibration Start')
                 #other.print_xbee('##--calibration Start--##\n')
