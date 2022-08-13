@@ -58,8 +58,8 @@ number_data = 30
 # variable for GPSrun
 # lat2 = 35.918548
 # lon2 = 139.908896
-lat2 = 40.2242703
-lon2 = 140.1378458
+lat2 = 40.2253112
+lon2 = 140.1385593
 
 th_distance = 5
 t_adj_gps = 15
